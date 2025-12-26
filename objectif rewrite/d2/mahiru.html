@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dossier Complet : Mahiru Koizumi (Pré-DR2)</title>
+  <style>
+    /* --- STYLE GÉNÉRAL --- */
+    :root{
+      --dr-pink: #d94a7a;     /* Rose “pellicule / regard” */
+      --dr-black: #1a1a1a;
+      --dr-paper: #fdfdfd;
+      --dr-text: #333;
+      --dr-muted: #666;
+      --dr-amber: #c07a1a;    /* Accent “flash / lumière” */
+    }
+
+    body{
+      background-color:#222;
+      font-family:'Courier New', Courier, monospace;
+      margin:0;
+      padding:40px;
+      display:flex;
+      justify-content:center;
+      background-image:
+              linear-gradient(0deg, transparent 24%, rgba(255,255,255,.05) 25%, rgba(255,255,255,.05) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.05) 75%, rgba(255,255,255,.05) 76%, transparent 77%, transparent),
+              linear-gradient(90deg, transparent 24%, rgba(255,255,255,.05) 25%, rgba(255,255,255,.05) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.05) 75%, rgba(255,255,255,.05) 76%, transparent 77%, transparent);
+      background-size:50px 50px;
+    }
+
+    /* --- CONTENEUR PRINCIPAL --- */
+    .file-container{
+      background-color:var(--dr-paper);
+      width:900px;
+      max-width:100%;
+      box-shadow:0 0 20px rgba(0,0,0,0.5);
+      border:2px solid var(--dr-black);
+      position:relative;
+    }
+
+    /* --- HEADER --- */
+    .header{
+      background-color:var(--dr-black);
+      color:#fff;
+      padding:25px;
+      border-bottom:6px solid var(--dr-pink);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:18px;
+    }
+
+    .header-text h1{
+      margin:0;
+      font-family:Impact, sans-serif;
+      font-size:2.6rem;
+      letter-spacing:2px;
+      text-transform:uppercase;
+    }
+
+    .header-text .sub{
+      color:var(--dr-pink);
+      font-weight:bold;
+      letter-spacing:3px;
+      margin-top:6px;
+      font-size:0.9rem;
+    }
+
+    .header-text .stamp{
+      display:inline-block;
+      margin-top:10px;
+      padding:4px 10px;
+      border:2px dashed rgba(255,255,255,0.5);
+      color:rgba(255,255,255,0.85);
+      font-size:0.75rem;
+      transform:rotate(-1deg);
+    }
+
+    .logo-box{
+      border:2px solid var(--dr-pink);
+      padding:5px 10px;
+      font-weight:bold;
+      font-size:0.8rem;
+      text-align:center;
+      transform:rotate(4deg);
+      min-width:150px;
+    }
+
+    /* --- LAYOUT DU CONTENU --- */
+    .content-grid{
+      display:grid;
+      grid-template-columns:300px 1fr;
+      gap:0;
+    }
+
+    /* --- SIDEBAR --- */
+    .sidebar{
+      background-color:#f4f4f4;
+      padding:20px;
+      border-right:2px solid var(--dr-black);
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    .mugshot{
+      width:100%;
+      height:auto;
+      border:4px solid var(--dr-black);
+      background:#fff;
+      filter:contrast(1.05);
+    }
+
+    .data-block{
+      border-top:2px solid var(--dr-black);
+      padding-top:10px;
+    }
+
+    .data-row{
+      display:flex;
+      justify-content:space-between;
+      font-size:0.85rem;
+      margin-bottom:6px;
+      border-bottom:1px dotted #ccc;
+      gap:12px;
+    }
+    .data-label{ font-weight:bold; color:var(--dr-black); }
+    .data-val{ color:#555; text-align:right; }
+
+    .tagline{
+      background:#fff;
+      border:2px solid var(--dr-black);
+      padding:10px;
+      font-size:0.82rem;
+      color:var(--dr-text);
+    }
+    .tagline strong{ color:var(--dr-pink); }
+
+    .bullet-box{
+      background:#fff;
+      border:2px solid var(--dr-black);
+      padding:10px;
+      font-size:0.82rem;
+      color:var(--dr-text);
+    }
+    .bullet-box h4{
+      margin:0 0 8px 0;
+      font-family:Impact, sans-serif;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      font-size:1rem;
+    }
+    .bullet-box ul{ margin:0; padding-left:18px; }
+    .bullet-box li{ margin:6px 0; }
+
+    .relations-box{
+      background:var(--dr-black);
+      color:#fff;
+      padding:10px;
+      font-size:0.8rem;
+    }
+    .relations-box h4{
+      margin:0 0 6px 0;
+      color:var(--dr-pink);
+      border-bottom:1px solid rgba(255,255,255,0.7);
+      padding-bottom:4px;
+    }
+    .relation-item{ margin-bottom:8px; }
+    .relation-role{ color:#aaa; font-size:0.7rem; }
+
+    .notice{
+      background:rgba(192, 122, 26, 0.10);
+      border-left:4px solid var(--dr-amber);
+      padding:10px;
+      font-size:0.82rem;
+      color:#3a240a;
+    }
+    .notice strong{ color:var(--dr-amber); }
+
+    /* --- MAIN CONTENT --- */
+    .main-info{ padding:30px; }
+
+    .title-banner{
+      background:linear-gradient(90deg, var(--dr-pink) 0%, transparent 90%);
+      color:#fff;
+      padding:8px 15px;
+      font-family:Impact, sans-serif;
+      font-size:1.25rem;
+      margin-bottom:15px;
+      margin-top:25px;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+    .title-banner:first-child{ margin-top:0; }
+
+    p{
+      line-height:1.65;
+      font-size:0.95rem;
+      text-align:justify;
+      margin-bottom:14px;
+      color:var(--dr-text);
+    }
+
+    .highlight{
+      background-color:rgba(217, 74, 122, 0.18);
+      padding:0 4px;
+      font-weight:bold;
+    }
+
+    .muted{ color:var(--dr-muted); }
+
+    .quote-box{
+      border:2px solid var(--dr-black);
+      padding:12px 14px;
+      background:#fff;
+      margin:14px 0;
+      font-style:italic;
+      color:#222;
+    }
+    .quote-box .src{
+      display:block;
+      margin-top:8px;
+      font-style:normal;
+      font-size:0.85rem;
+      color:var(--dr-muted);
+      text-align:right;
+    }
+
+    /* --- TIMELINE STYLE --- */
+    .timeline-item{
+      border-left:3px solid var(--dr-pink);
+      padding-left:15px;
+      margin-bottom:18px;
+      position:relative;
+    }
+    .timeline-item::before{
+      content:'';
+      position:absolute;
+      left:-8px;
+      top:2px;
+      width:13px;
+      height:13px;
+      background:var(--dr-pink);
+      border-radius:50%;
+    }
+    .timeline-title{
+      font-weight:bold;
+      color:var(--dr-black);
+      text-transform:uppercase;
+      font-size:0.9rem;
+      margin-bottom:6px;
+      display:block;
+    }
+
+    /* --- FOOTER --- */
+    .footer-quote{
+      grid-column:1 / -1;
+      background-color:var(--dr-black);
+      color:#fff;
+      padding:30px;
+      text-align:center;
+      font-style:italic;
+      border-top:6px solid var(--dr-pink);
+    }
+    .footer-quote span{
+      font-size:1.2rem;
+      color:var(--dr-pink);
+      display:block;
+      margin-top:10px;
+      font-family:Impact, sans-serif;
+      font-style:normal;
+      letter-spacing:1px;
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width:768px){
+      body{ padding:16px; }
+      .content-grid{ grid-template-columns:1fr; }
+      .sidebar{ border-right:none; border-bottom:2px solid var(--dr-black); }
+      .header{ flex-direction:column; align-items:flex-start; }
+      .logo-box{ transform:none; }
+    }
+  </style>
+</head>
+<body>
+<div class="file-container">
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-text">
+      <h1>Mahiru Koizumi</h1>
+      <div class="sub">DOSSIER ÉTUDIANT // CLASSE 77-B (PRÉ-INSCRIPTION)</div>
+      <div class="stamp">ARCHIVE : AVANT INCIDENT “JABBERWOCK ISLAND”</div>
+    </div>
+    <div class="logo-box">
+      HOPE'S PEAK<br />DATABASE<br />VER. 2.0
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <img
+              src="https://static.wikia.nocookie.net/danganronpa/images/5/58/Mahiru_Koizumi_Fullbody_Sprite_%282%29.png"
+              alt="Mahiru Koizumi"
+              class="mugshot"
+      />
+
+      <div class="tagline">
+        Angle presse : <strong>REGARD LUCIDE</strong> + <strong>SENS DU DEVOIR</strong> + <strong>PHOTO COMME PREUVE</strong>
+      </div>
+
+      <div class="data-block">
+        <div class="data-row"><span class="data-label">Statut</span> <span class="data-val">Candidat admis</span></div>
+        <div class="data-row"><span class="data-label">Talent (dossier)</span> <span class="data-val">Ultime Photographe</span></div>
+        <div class="data-row"><span class="data-label">Anniversaire</span> <span class="data-val">16 Mai</span></div>
+        <div class="data-row"><span class="data-label">Taille / Poids</span> <span class="data-val">164cm / 48kg</span></div>
+        <div class="data-row"><span class="data-label">Groupe sanguin</span> <span class="data-val">A</span></div>
+      </div>
+
+      <div class="data-block">
+        <div class="data-row"><span class="data-label">Aime</span> <span class="data-val">Promenades, photos, souvenirs</span></div>
+        <div class="data-row"><span class="data-label">N'aime pas</span> <span class="data-val">Laxisme, mensonges “mignons”</span></div>
+      </div>
+
+      <div class="bullet-box">
+        <h4>Lecture rapide</h4>
+        <ul>
+          <li><strong>Pragmatique</strong> : dit ce qu’elle pense, surtout quand personne n’ose.</li>
+          <li><strong>Morale concrète</strong> : responsabilité, entraide, “agir au lieu de parler”.</li>
+          <li><strong>Protectrice</strong> : veille sur les plus fragiles (même en râlant).</li>
+          <li><strong>Exigeante</strong> : peut sembler dure, mais vise la fiabilité.</li>
+        </ul>
+      </div>
+
+      <div class="relations-box">
+        <h4>RELATIONS CLÉS (AVANT CAMPUS)</h4>
+        <div class="relation-item">
+          <strong>Famille Koizumi</strong><br />
+          <span class="relation-role">Stabilité affective, attentes de maturité</span>
+        </div>
+        <div class="relation-item">
+          <strong>Club photo / mentor</strong><br />
+          <span class="relation-role">Apprentissage du “regard” et de l’éthique</span>
+        </div>
+        <div class="relation-item">
+          <strong>Groupes d’amis</strong><br />
+          <span class="relation-role">Rôle “grande sœur” — recadre, organise, tranche</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main-info">
+      <div class="title-banner">Résumé — “La photographe qui ne ferme pas les yeux”</div>
+      <p>
+        Mahiru Koizumi n’a pas une aura mystérieuse : elle a un <span class="highlight">regard</span>.
+        Un regard qui observe, compare, retient. Là où d’autres voient une scène, Mahiru voit une composition :
+        qui se place où, qui s’efface, qui force le sourire. Elle ne photographie pas seulement des souvenirs —
+        elle photographie des <span class="highlight">preuves</span>.
+      </p>
+      <p>
+        Avant Hope’s Peak, sa réputation est celle d’une fille “sérieuse” et “franche”.
+        Elle n’aime pas perdre du temps, ni laisser les choses se dégrader au nom de la politesse.
+        Cette posture lui attire du respect… et parfois de l’agacement.
+      </p>
+
+      <div class="title-banner">Profil psychologique (pré-campus)</div>
+      <p>
+        Mahiru fonctionne sur une morale simple : si quelque chose doit être fait, quelqu’un doit le faire.
+        Et si personne ne le fait, elle le fera — quitte à passer pour autoritaire.
+        Elle valorise la fiabilité au-dessus du charme, et l’action au-dessus des excuses.
+      </p>
+      <p>
+        Son point fragile est l’usure : à force de “tenir” le groupe, elle s’épuise,
+        et son ton devient plus sec. Elle a aussi une sensibilité particulière au mensonge “léger”
+        (petites triches, promesses non tenues), parce qu’elle y voit la racine des catastrophes.
+      </p>
+      <div class="quote-box">
+        “Elle a la dureté des gens qui ont dû grandir plus vite. Et la tendresse de ceux qui continuent quand même.”
+        <span class="src">— Note (club / encadrement)</span>
+      </div>
+
+      <div class="title-banner">Analyse du talent : Ultime Photographe</div>
+      <p>
+        Le dossier d’Hope’s Peak met en avant son sens du timing, de la lumière, et surtout de la narration visuelle.
+        Mahiru capture des instants “propres”, lisibles, porteurs d’émotion — sans tricher. Sa ligne :
+        <span class="highlight">montrer</span>, pas inventer.
+      </p>
+      <p class="muted">
+        Son talent sert aussi d’outil d’enquête : elle remarque des détails, se souvient des positions,
+        et comprend comment une scène peut être mise en scène. La photo devient un langage moral : “regarde ce qui est là”.
+      </p>
+
+      <div class="title-banner">Valeurs : responsabilité, sincérité, protection</div>
+      <p>
+        Mahiru a une posture “grande sœur” : elle recadre, distribue des conseils non sollicités,
+        et protège par la structure. Elle attend des autres qu’ils prennent leur part.
+        Son discours sur la responsabilité peut sembler dur, mais il vient d’un besoin : éviter que le groupe s’effondre.
+      </p>
+      <p>
+        Dans le rewrite, on peut rendre cette exigence plus nuancée en montrant qu’elle critique surtout
+        quand elle a peur. Quand les choses vont bien, Mahiru est capable d’être chaleureuse,
+        drôle même — mais elle a du mal à se laisser aller si elle sent un risque.
+      </p>
+
+      <div class="title-banner">Chronologie (avant Danganronpa 2)</div>
+
+      <div class="timeline-item">
+        <span class="timeline-title">Découverte : l’appareil comme ancrage</span>
+        La photo devient un refuge : un moyen d’organiser le monde et de le garder “vrai”.
+        Elle apprend tôt que cadrer, c’est choisir ce qu’on regarde… et ce qu’on refuse d’ignorer.
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-title">Collège : rôle de “pilier”</span>
+        Dans les groupes, Mahiru prend souvent le rôle logistique : organiser, rappeler, vérifier.
+        Elle développe une réputation de fille fiable, parfois “trop sérieuse”.
+        Plus elle est utile, plus on s’appuie sur elle — et plus elle se sent responsable.
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-title">Incident pivot (suggestions)</span>
+        Un événement qui justifie sa fermeté :
+        <br /><strong>A)</strong> une sortie scolaire qui tourne mal à cause d’un “petit mensonge”, et Mahiru doit gérer les conséquences ;
+        <br /><strong>B)</strong> une photo qu’on lui demande de supprimer / falsifier (elle refuse) ;
+        <br /><strong>C)</strong> une amie victime de rumeurs, et Mahiru comprend que l’image peut tuer.
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-title">Admission Hope’s Peak : reconnaissance du regard</span>
+        Hope’s Peak la recrute pour une excellence artistique et documentaire.
+        Mahiru accueille l’admission avec sérieux : elle sait que ce prestige augmente aussi les attentes.
+        Elle se prépare comme pour un reportage : matériel prêt, objectifs clairs, pas de place pour l’improvisation.
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-title">Pré-rentrée : “contrat moral”</span>
+        Avant d’arriver, Mahiru se fait un serment : ne pas se laisser aspirer par les egos,
+        et rester fidèle à ses principes.
+      </div>
+
+      <div class="title-banner">Angles de rewrite (pour la rendre “intégrale” et la personnaliser)</div>
+      <p>
+        <strong>1) Photo = vérité</strong> : elle déteste la manipulation de l’image, même “pour de bonnes raisons”.<br />
+        <strong>2) Exigence = anxiété</strong> : elle recadre parce qu’elle anticipe le pire.<br />
+        <strong>3) Arc pré-DR2</strong> : apprendre à demander de l’aide au lieu de tout porter.<br />
+        <strong>4) Conflit central</strong> : documenter fidèlement ou protéger émotionnellement (quand la vérité fait mal).
+      </p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-quote">
+    “Si tu veux que ça aille mieux, commence par être honnête. On ne construit rien sur du faux.”
+    <span>- MAHIRU KOIZUMI</span>
+  </div>
+</div>
+</body>
+</html>
