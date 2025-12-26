@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dossier Complet : Chiaki Nanami (Pré-DR2)</title>
+    <style>
+        /* --- STYLE GÉNÉRAL --- */
+        :root{
+            --dr-purple:#6a43c6;   /* Violet “nocturne / gaming” */
+            --dr-black:#1a1a1a;
+            --dr-paper:#fdfdfd;
+            --dr-text:#333;
+            --dr-muted:#666;
+            --dr-cyan:#2aa6b3;     /* Accent “tech” */
+        }
+
+        body{
+            background-color:#222;
+            font-family:'Courier New', Courier, monospace;
+            margin:0;
+            padding:40px;
+            display:flex;
+            justify-content:center;
+            background-image:
+                    linear-gradient(0deg, transparent 24%, rgba(255,255,255,.05) 25%, rgba(255,255,255,.05) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.05) 75%, rgba(255,255,255,.05) 76%, transparent 77%, transparent),
+                    linear-gradient(90deg, transparent 24%, rgba(255,255,255,.05) 25%, rgba(255,255,255,.05) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.05) 75%, rgba(255,255,255,.05) 76%, transparent 77%, transparent);
+            background-size:50px 50px;
+        }
+
+        /* --- CONTENEUR PRINCIPAL --- */
+        .file-container{
+            background-color:var(--dr-paper);
+            width:900px;
+            max-width:100%;
+            box-shadow:0 0 20px rgba(0,0,0,0.5);
+            border:2px solid var(--dr-black);
+            position:relative;
+        }
+
+        /* --- HEADER --- */
+        .header{
+            background-color:var(--dr-black);
+            color:#fff;
+            padding:25px;
+            border-bottom:6px solid var(--dr-purple);
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap:18px;
+        }
+
+        .header-text h1{
+            margin:0;
+            font-family:Impact, sans-serif;
+            font-size:2.6rem;
+            letter-spacing:2px;
+            text-transform:uppercase;
+        }
+
+        .header-text .sub{
+            color:var(--dr-purple);
+            font-weight:bold;
+            letter-spacing:3px;
+            margin-top:6px;
+            font-size:0.9rem;
+        }
+
+        .header-text .stamp{
+            display:inline-block;
+            margin-top:10px;
+            padding:4px 10px;
+            border:2px dashed rgba(255,255,255,0.5);
+            color:rgba(255,255,255,0.85);
+            font-size:0.75rem;
+            transform:rotate(-1deg);
+        }
+
+        .logo-box{
+            border:2px solid var(--dr-purple);
+            padding:5px 10px;
+            font-weight:bold;
+            font-size:0.8rem;
+            text-align:center;
+            transform:rotate(4deg);
+            min-width:150px;
+        }
+
+        /* --- LAYOUT --- */
+        .content-grid{
+            display:grid;
+            grid-template-columns:300px 1fr;
+            gap:0;
+        }
+
+        /* --- SIDEBAR --- */
+        .sidebar{
+            background-color:#f4f4f4;
+            padding:20px;
+            border-right:2px solid var(--dr-black);
+            display:flex;
+            flex-direction:column;
+            gap:18px;
+        }
+
+        .mugshot{
+            width:100%;
+            height:auto;
+            border:4px solid var(--dr-black);
+            background:#fff;
+            filter:contrast(1.05);
+        }
+
+        .data-block{
+            border-top:2px solid var(--dr-black);
+            padding-top:10px;
+        }
+
+        .data-row{
+            display:flex;
+            justify-content:space-between;
+            font-size:0.85rem;
+            margin-bottom:6px;
+            border-bottom:1px dotted #ccc;
+            gap:12px;
+        }
+        .data-label{ font-weight:bold; color:var(--dr-black); }
+        .data-val{ color:#555; text-align:right; }
+
+        .tagline{
+            background:#fff;
+            border:2px solid var(--dr-black);
+            padding:10px;
+            font-size:0.82rem;
+            color:var(--dr-text);
+        }
+        .tagline strong{ color:var(--dr-purple); }
+
+        .bullet-box{
+            background:#fff;
+            border:2px solid var(--dr-black);
+            padding:10px;
+            font-size:0.82rem;
+            color:var(--dr-text);
+        }
+        .bullet-box h4{
+            margin:0 0 8px 0;
+            font-family:Impact, sans-serif;
+            letter-spacing:1px;
+            text-transform:uppercase;
+            font-size:1rem;
+        }
+        .bullet-box ul{ margin:0; padding-left:18px; }
+        .bullet-box li{ margin:6px 0; }
+
+        .relations-box{
+            background:var(--dr-black);
+            color:#fff;
+            padding:10px;
+            font-size:0.8rem;
+        }
+        .relations-box h4{
+            margin:0 0 6px 0;
+            color:var(--dr-purple);
+            border-bottom:1px solid rgba(255,255,255,0.7);
+            padding-bottom:4px;
+        }
+        .relation-item{ margin-bottom:8px; }
+        .relation-role{ color:#aaa; font-size:0.7rem; }
+
+        .notice{
+            background:rgba(42, 166, 179, 0.10);
+            border-left:4px solid var(--dr-cyan);
+            padding:10px;
+            font-size:0.82rem;
+            color:#0d3940;
+        }
+        .notice strong{ color:var(--dr-cyan); }
+
+        /* --- MAIN --- */
+        .main-info{ padding:30px; }
+
+        .title-banner{
+            background:linear-gradient(90deg, var(--dr-purple) 0%, transparent 90%);
+            color:#fff;
+            padding:8px 15px;
+            font-family:Impact, sans-serif;
+            font-size:1.25rem;
+            margin-bottom:15px;
+            margin-top:25px;
+            text-transform:uppercase;
+            letter-spacing:1px;
+        }
+        .title-banner:first-child{ margin-top:0; }
+
+        p{
+            line-height:1.65;
+            font-size:0.95rem;
+            text-align:justify;
+            margin-bottom:14px;
+            color:var(--dr-text);
+        }
+
+        .highlight{
+            background-color:rgba(106, 67, 198, 0.18);
+            padding:0 4px;
+            font-weight:bold;
+        }
+
+        .muted{ color:var(--dr-muted); }
+
+        .quote-box{
+            border:2px solid var(--dr-black);
+            padding:12px 14px;
+            background:#fff;
+            margin:14px 0;
+            font-style:italic;
+            color:#222;
+        }
+        .quote-box .src{
+            display:block;
+            margin-top:8px;
+            font-style:normal;
+            font-size:0.85rem;
+            color:var(--dr-muted);
+            text-align:right;
+        }
+
+        /* --- TIMELINE --- */
+        .timeline-item{
+            border-left:3px solid var(--dr-purple);
+            padding-left:15px;
+            margin-bottom:18px;
+            position:relative;
+        }
+        .timeline-item::before{
+            content:'';
+            position:absolute;
+            left:-8px;
+            top:2px;
+            width:13px;
+            height:13px;
+            background:var(--dr-purple);
+            border-radius:50%;
+        }
+        .timeline-title{
+            font-weight:bold;
+            color:var(--dr-black);
+            text-transform:uppercase;
+            font-size:0.9rem;
+            margin-bottom:6px;
+            display:block;
+        }
+
+        /* --- FOOTER --- */
+        .footer-quote{
+            grid-column:1 / -1;
+            background-color:var(--dr-black);
+            color:#fff;
+            padding:30px;
+            text-align:center;
+            font-style:italic;
+            border-top:6px solid var(--dr-purple);
+        }
+        .footer-quote span{
+            font-size:1.2rem;
+            color:var(--dr-purple);
+            display:block;
+            margin-top:10px;
+            font-family:Impact, sans-serif;
+            font-style:normal;
+            letter-spacing:1px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width:768px){
+            body{ padding:16px; }
+            .content-grid{ grid-template-columns:1fr; }
+            .sidebar{ border-right:none; border-bottom:2px solid var(--dr-black); }
+            .header{ flex-direction:column; align-items:flex-start; }
+            .logo-box{ transform:none; }
+        }
+    </style>
+</head>
+<body>
+<div class="file-container">
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-text">
+            <h1>Chiaki Nanami</h1>
+            <div class="sub">DOSSIER ÉTUDIANT // CLASSE 77-B (PRÉ-INSCRIPTION)</div>
+            <div class="stamp">ARCHIVE : AVANT INCIDENT “JABBERWOCK ISLAND”</div>
+        </div>
+        <div class="logo-box">
+            HOPE'S PEAK<br>DATABASE<br>VER. 2.0
+        </div>
+    </div>
+
+    <div class="content-grid">
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <img
+                    src="https://static.wikia.nocookie.net/danganronpa/images/1/19/Chiaki_Nanami_Fullbody_Sprite_%282%29.png"
+                    alt="Chiaki Nanami"
+                    class="mugshot"
+            />
+
+            <div class="tagline">
+                Angle presse : <strong>GÉNIE DU JEU</strong> + <strong>CALME IMPERTURBABLE</strong> + <strong>LEADER SANS BRUIT</strong>
+            </div>
+
+            <div class="data-block">
+                <div class="data-row"><span class="data-label">Statut</span> <span class="data-val">Candidat admis</span></div>
+                <div class="data-row"><span class="data-label">Talent (dossier)</span> <span class="data-val">Ultime Gameuse</span></div>
+                <div class="data-row"><span class="data-label">Anniversaire</span> <span class="data-val">14 Mars</span></div>
+                <div class="data-row"><span class="data-label">Taille / Poids</span> <span class="data-val">160cm / 46kg</span></div>
+                <div class="data-row"><span class="data-label">Groupe sanguin</span> <span class="data-val">A</span></div>
+            </div>
+
+            <div class="data-block">
+                <div class="data-row"><span class="data-label">Aime</span> <span class="data-val">Jeux, énigmes, siestes</span></div>
+                <div class="data-row"><span class="data-label">N'aime pas</span> <span class="data-val">Bruit inutile, “rage”, triche</span></div>
+            </div>
+
+            <div class="bullet-box">
+                <h4>Compétences associées</h4>
+                <ul>
+                    <li><strong>Lecture de patterns</strong> : repère les schémas, anticipations.</li>
+                    <li><strong>Gestion du stress</strong> : garde un rythme stable sous pression.</li>
+                    <li><strong>Pédagogie implicite</strong> : guide sans humilier.</li>
+                    <li><strong>Esprit d’équipe</strong> : privilégie la victoire “du groupe”.</li>
+                </ul>
+            </div>
+
+            <div class="relations-box">
+                <h4>RELATIONS CLÉS (AVANT CAMPUS)</h4>
+                <div class="relation-item">
+                    <strong>Communautés gaming</strong><br />
+                    <span class="relation-role">Reconnaissance technique — réputation silencieuse</span>
+                </div>
+                <div class="relation-item">
+                    <strong>Organisateurs de tournois</strong><br />
+                    <span class="relation-role">Profil “propre” — discipline, fair-play</span>
+                </div>
+                <div class="relation-item">
+                    <strong>Camarades de classe</strong><br />
+                    <span class="relation-role">Distance polie — “sympa mais ailleurs”</span>
+                </div>
+            </div>
+
+            <div class="notice">
+                <strong>Note rewrite :</strong> Chiaki fonctionne très bien si ses “silences” sont des <em>choix</em> (observer, tester, protéger),
+                pas juste de la passivité.
+            </div>
+        </div>
+
+        <!-- MAIN -->
+        <div class="main-info">
+            <div class="title-banner">Résumé — “La stratège somnolente”</div>
+            <p>
+                Chiaki Nanami a un profil paradoxal : une présence douce, presque effacée, et une réputation de
+                <span class="highlight">monstre de performance</span> dès qu’un jeu commence. Là où d’autres cherchent à impressionner,
+                elle cherche surtout à comprendre : mécaniques, intentions, timing, failles. Elle gagne souvent sans en faire une affaire.
+            </p>
+            <p>
+                Avant Hope’s Peak, Chiaki est déjà cataloguée comme “la fille qui dort” — ce qui masque une réalité plus intéressante :
+                elle économise son énergie sociale et l’investit ailleurs. Quand elle parle, c’est rarement pour remplir l’air ;
+                c’est pour orienter, clarifier, ou protéger quelqu’un d’une mauvaise décision.
+            </p>
+
+            <div class="title-banner">Profil psychologique (pré-campus)</div>
+            <p>
+                Chiaki est calme, lente dans ses gestes, et attentive dans ses regards.
+                Elle analyse sans juger, ce qui la rend facile à fréquenter… mais difficile à cerner.
+                Son empathie est pratique : elle ne dramatise pas les émotions, elle cherche la solution.
+            </p>
+            <p>
+                Son point de fragilité, dans un cadre réaliste, est double :
+                <span class="highlight">l’isolement</span> (par habitude plus que par rejet) et la <span class="highlight">fatigue</span>.
+                Elle peut manquer des signaux sociaux, ou ne pas réagir assez vite aux dynamiques d’autorité.
+                Cela donne de la matière pour un rewrite : la rendre plus active sans trahir sa nature.
+            </p>
+            <div class="quote-box">
+                “Elle n’interrompt pas. Elle attend que tu finisses… puis elle te dit exactement où tu t’es trompé.”
+                <span class="src">— Commentaire (tournoi / staff)</span>
+            </div>
+
+            <div class="title-banner">Analyse du talent : Ultime Gameuse</div>
+            <p>
+                Le dossier ne se limite pas à “elle est forte aux jeux”. Il décrit un ensemble :
+                maîtrise multi-genres (stratégie, réflexion, action), mémorisation, optimisation, et capacité à rester lucide quand tout s’accélère.
+                Son style est méthodique : elle teste, apprend, puis déroule.
+            </p>
+            <p class="muted">
+                En rewrite, son talent peut servir de grille de lecture du monde : elle pense en objectifs, conditions de victoire,
+                risques, “cooldown”, ressources. C’est une façon élégante de lui donner un regard unique sur les gens et les situations.
+            </p>
+
+            <div class="title-banner">Vie quotidienne : social minimal, loyauté maximale</div>
+            <p>
+                Chiaki préfère les espaces calmes : salles d’arcade, cafés discrets, chambre rangée.
+                Elle n’a pas forcément beaucoup d’amis proches, mais elle est <span class="highlight">très fiable</span> pour ceux qu’elle choisit.
+                Plutôt que d’être “charismatique”, elle devient un point fixe : quelqu’un qui ne panique pas, ne trahit pas,
+                et ne se laisse pas entraîner par la foule.
+            </p>
+            <p>
+                Dans un rewrite, tu peux suggérer qu’elle a appris à être cette personne-là parce qu’elle a déjà vu
+                des communautés se déchirer (toxicité, harcèlement en ligne, jalousies de ranking). Elle ne veut pas de ça “en vrai”.
+            </p>
+
+            <div class="title-banner">Chronologie (avant Danganronpa 2)</div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">Découverte : le jeu comme langage</span>
+                Très tôt, Chiaki comprend qu’elle communique mieux via le jeu : règles claires, feedback immédiat,
+                progression mesurable. Elle y trouve un endroit où l’effort est visible et la violence sociale plus contrôlable.
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">Montée en niveau : réputation sans bruit</span>
+                Performances remarquées sur plusieurs titres et formats (offline/online).
+                Elle évite l’esbroufe : pas d’ego public, peu d’interviews, pas de scandales.
+                Sa signature : constance, fair-play, et décisions froides au bon moment.
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">Incident pivot (suggestion rewrite)</span>
+                Un événement marquant justifie son calme :
+                <br><strong>A)</strong> elle observe une “chute” (ami brisé par la compétition / toxicité) et se promet de ne jamais humilier ;
+                <br><strong>B)</strong> elle perd volontairement une finale pour protéger quelqu’un (ou pour dénoncer une triche), et découvre son propre code moral ;
+                <br><strong>C)</strong> elle devient “coach” d’un groupe, et comprend que la victoire la plus rare est la cohésion.
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">Admission Hope’s Peak : reconnaissance officielle</span>
+                Hope’s Peak valide son talent : non pas comme hobby, mais comme excellence.
+                Chiaki réagit sobrement. Ce qui l’intéresse n’est pas le prestige — c’est l’idée de rencontrer
+                d’autres “Ultimes” et de comprendre comment ils fonctionnent.
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">Pré-rentrée : “mode observation”</span>
+                Avant l’arrivée, Chiaki se prépare comme avant un tournoi :
+                elle s’informe, anticipe les personnalités, imagine des “synergies” et des “matchups” sociaux.
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer-quote">
+        “Si on joue ensemble, on a une chance. Si on joue chacun pour soi… c’est un game over.”
+        <span>- CHIAKI NANAMI</span>
+    </div>
+</div>
+</body>
+</html>
