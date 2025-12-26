@@ -1,137 +1,282 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dossier Révisé : Makoto Naegi (Pré-Tragédie)</title>
+    <title>LE CLASSEUR DES FICHES</title>
     <style>
-        /* MISE À JOUR DU THÈME AVEC NUANCES DE VERT PROFOND */
+        /* --- STYLE GÉNÉRAL --- */
         :root {
-            --dr-green: #2e5e2e; /* Vert Forêt */
-            --dr-accent: #6b8c42; /* Vert Mousse */
-            --dr-black: #0d1a0d;
-            --dr-paper: #f8fbf3;
+            --dr-green: #4b9e4b; /* Vert Naegi */
+            --dr-black: #1a1a1a;
+            --dr-paper: #fdfdfd;
+            --dr-text: #333;
+            --dr-muted: #666;
+            --dr-red: #b21f2d;
         }
 
-        /* AJOUT D'UN EFFET DE VIEILLISSEMENT */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(
-                    0deg,
-                    rgba(0, 0, 0, 0.05) 0px,
-                    rgba(0, 0, 0, 0.05) 1px,
-                    transparent 1px,
-                    transparent 4px
-            );
-            pointer-events: none;
-            z-index: 999;
+        body {
+            background-color: #222;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            background-image:
+                    linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent),
+                    linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent);
+            background-size: 50px 50px;
         }
 
-        /* MODIFICATION DES OMBRES POUR UN STYLE PLUS ORGANIQUE */
+        /* --- CONTENEUR PRINCIPAL --- */
         .file-container {
-            box-shadow: 15px 15px 0px rgba(46, 94, 46, 0.3);
-            border: 3px solid var(--dr-black);
+            background-color: var(--dr-paper);
+            width: 900px;
+            max-width: 100%;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            border: 2px solid var(--dr-black);
+            position: relative;
         }
 
-        /* AJOUT D'UN EFFET DE TAMPON HUMIDE */
-        .watermark {
-            position: absolute;
-            opacity: 0.1;
-            font-size: 15rem;
-            transform: rotate(-45deg);
+        /* --- HEADER --- */
+        .header {
+            background-color: var(--dr-black);
+            color: white;
+            padding: 25px;
+            border-bottom: 6px solid var(--dr-green);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .header-text h1 {
+            margin: 0;
+            font-family: Impact, sans-serif;
+            font-size: 2.6rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .header-text .sub {
             color: var(--dr-green);
-            font-family: Impact;
-            pointer-events: none;
-            z-index: -1;
-            top: 30%;
-            left: -50px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-top: 6px;
+            font-size: 0.9rem;
+        }
+
+        .header-text .stamp {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 4px 10px;
+            border: 2px dashed rgba(255,255,255,0.5);
+            color: rgba(255,255,255,0.85);
+            font-size: 0.75rem;
+            transform: rotate(-1deg);
+        }
+
+        .logo-box {
+            border: 2px solid var(--dr-green);
+            padding: 5px 10px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            text-align: center;
+            transform: rotate(-5deg);
+            min-width: 150px;
+        }
+
+        /* --- LAYOUT DU CONTENU --- */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 0;
+        }
+
+        /* --- SIDEBAR (GAUCHE) --- */
+        .sidebar {
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-right: 2px solid var(--dr-black);
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .mugshot {
+            width: 100%;
+            height: auto;
+            border: 4px solid var(--dr-black);
+            background: white;
+            filter: contrast(1.1);
+        }
+
+        .data-block {
+            border-top: 2px solid var(--dr-black);
+            padding-top: 10px;
+        }
+
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+            border-bottom: 1px dotted #ccc;
+            gap: 12px;
+        }
+        .data-label { font-weight: bold; color: var(--dr-black); }
+        .data-val { color: #555; text-align: right; }
+
+        .bullet-box {
+            background: white;
+            border: 2px solid var(--dr-black);
+            padding: 10px;
+            font-size: 0.82rem;
+            color: var(--dr-text);
+        }
+        .bullet-box h4 {
+            margin: 0 0 8px 0;
+            font-family: Impact, sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 1rem;
+        }
+        .bullet-box ul { margin: 0; padding-left: 18px; }
+        .bullet-box li { margin: 6px 0; }
+
+        .relations-box {
+            background: var(--dr-black);
+            color: white;
+            padding: 10px;
+            font-size: 0.8rem;
+        }
+        .relations-box h4 {
+            margin: 0 0 6px 0;
+            color: var(--dr-green);
+            border-bottom: 1px solid rgba(255,255,255,0.7);
+            padding-bottom: 4px;
+        }
+        .relation-item { margin-bottom: 8px; }
+        .relation-role { color: #aaa; font-size: 0.7rem; }
+
+        .notice {
+            background: rgba(178, 31, 45, 0.08);
+            border-left: 4px solid var(--dr-red);
+            padding: 10px;
+            font-size: 0.82rem;
+            color: #4b1a1f;
+        }
+        .notice strong { color: var(--dr-red); }
+
+        /* --- MAIN CONTENT (DROITE) --- */
+        .main-info {
+            padding: 30px;
+        }
+
+        .title-banner {
+            background: linear-gradient(90deg, var(--dr-green) 0%, transparent 90%);
+            color: white;
+            padding: 8px 15px;
+            font-family: Impact, sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            margin-top: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .title-banner:first-child { margin-top: 0; }
+
+        p {
+            line-height: 1.65;
+            font-size: 0.95rem;
+            text-align: justify;
+            margin-bottom: 14px;
+            color: var(--dr-text);
+        }
+
+        .highlight {
+            background-color: rgba(75, 158, 75, 0.2);
+            padding: 0 4px;
+            font-weight: bold;
+        }
+
+        .muted { color: var(--dr-muted); }
+
+        /* --- TIMELINE STYLE --- */
+        .timeline-item {
+            border-left: 3px solid var(--dr-green);
+            padding-left: 15px;
+            margin-bottom: 18px;
+            position: relative;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 2px;
+            width: 13px;
+            height: 13px;
+            background: var(--dr-green);
+            border-radius: 50%;
+        }
+        .timeline-title {
+            font-weight: bold;
+            color: var(--dr-black);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .quote-box {
+            border: 2px solid var(--dr-black);
+            padding: 12px 14px;
+            background: #fff;
+            margin: 14px 0;
+            font-style: italic;
+            color: #222;
+        }
+        .quote-box .src {
+            display: block;
+            margin-top: 8px;
+            font-style: normal;
+            font-size: 0.85rem;
+            color: var(--dr-muted);
+            text-align: right;
+        }
+
+        /* --- FOOTER --- */
+        .footer-quote {
+            grid-column: 1 / -1;
+            background-color: var(--dr-black);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            font-style: italic;
+            border-top: 6px solid var(--dr-green);
+        }
+        .footer-quote span {
+            font-size: 1.2rem;
+            color: var(--dr-green);
+            display: block;
+            margin-top: 10px;
+            font-family: Impact, sans-serif;
+            font-style: normal;
+            letter-spacing: 1px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            body { padding: 16px; }
+            .content-grid { grid-template-columns: 1fr; }
+            .sidebar { border-right: none; border-bottom: 2px solid var(--dr-black); }
+            .header { flex-direction: column; align-items: flex-start; }
+            .logo-box { transform: none; }
         }
     </style>
 </head>
 <body>
-
-<div class="file-container">
-    <div class="watermark">NORMAL</div>
-
-    <!-- EN-TÊTE RÉVISÉE -->
-    <div class="header" style="border-bottom-color: var(--dr-accent);">
-        <div class="header-text">
-            <h1 style="color: var(--dr-accent);">MAKOTO NAEGI</h1>
-            <div class="sub">ARCHIVE #000 - SUJET BASELINE</div>
-        </div>
-        <div class="logo-box" style="border-color: var(--dr-accent);">
-            PROJET<br>RÉGÉNÉRATION
-        </div>
-    </div>
-
-    <div class="content-grid">
-
-        <!-- NOUVELLE BARRE LATÉRALE -->
-        <div class="sidebar">
-            <div class="data-block">
-                <div class="data-row"><span class="label">Cohorte</span> <span class="value">Groupe Témoin</span></div>
-                <div class="data-row"><span class="label">Indice de Résilience</span> <span class="value">187%</span></div>
-                <div class="data-row"><span class="label">Potentiel Caché</span> <span class="value">[REDACTED]</span></div>
-            </div>
-
-            <div class="relations-box" style="background: var(--dr-green);">
-                <h4>CONNEXIONS PRÉMONITOIRES</h4>
-                <div class="relation-item">
-                    <strong>Jin Kirigiri</strong><br>
-                    <span class="relation-role">Surveillance spéciale (2014-2015)</span>
-                </div>
-                <div class="relation-item">
-                    <strong>Mukuro Ikusaba</strong><br>
-                    <span class="relation-role">Observation rapprochée</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- CONTENU PRINCIPAL RÉÉCRIT -->
-        <div class="main-info">
-
-            <div class="section-header">L'Anomalie de la Normalité</div>
-            <p>
-                Contrairement aux autres sujets du programme Hope's Peak, Makoto représente un paradoxe vivant :
-                son ADN ne présente aucune mutation particulière, ses résultats académiques flirtent avec la moyenne nationale,
-                mais son <em>indice de cohésion sociale</em> dépasse systématiquement les prévisions de 300%.
-            </p>
-
-            <div class="section-header">Fonctionnement de la "Chance"</div>
-            <div class="timeline-item">
-                <span class="timeline-title">Phénomène #78-A</span>
-                Les capteurs émotionnels révèlent une inversion systématique des ondes cérébrales lors des événements
-                qualifiés de "chanceux" : activité préfrontale réduite (-40%) contre stimulation accrue du cervelet (+120%).
-                Ce schéma correspond aux états méditatifs avancés.
-            </div>
-
-            <div class="section-header">Événements Clés Pré-Sélection</div>
-            <ul class="event-list">
-                <li class="event-item">
-                    <span class="event-title">Incident du Parc Negishi (2014)</span>
-                    Sauvetage spontané de Komaru d'un incendie, malgré une phobie documentée du feu. Les caméras de
-                    surveillance montrent Makoto traversant les flammes avec une précision anormale.
-                </li>
-                <li class="event-item">
-                    <span class="event-title">Rencontre avec Mukuro Ikusaba (2015)</span>
-                    Interaction non enregistrée dans les fichiers officiels : échange de 4min17s dans une librairie
-                    d'occasion. Sujet rapporté avoir "oublié" l'incident pendant 72h.
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- NOUVEAU PIED DE PAGE PROPHÉTIQUE -->
-    <div class="footer-quote" style="border-top-color: var(--dr-accent);">
-        "Les graines de l'espoir germent toujours dans la terre la plus aride."
-        <span>- NOTE MARGINALE D'UN RAPPORT CLASSÉ</span>
-    </div>
-</div>
-
+<h1>Hello World!</h1>
+<p>This is my first website.</p>
 </body>
 </html>
