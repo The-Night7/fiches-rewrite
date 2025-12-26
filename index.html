@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dossier Révisé : Makoto Naegi (Pré-Tragédie)</title>
+    <style>
+        /* MISE À JOUR DU THÈME AVEC NUANCES DE VERT PROFOND */
+        :root {
+            --dr-green: #2e5e2e; /* Vert Forêt */
+            --dr-accent: #6b8c42; /* Vert Mousse */
+            --dr-black: #0d1a0d;
+            --dr-paper: #f8fbf3;
+        }
+
+        /* AJOUT D'UN EFFET DE VIEILLISSEMENT */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                    0deg,
+                    rgba(0, 0, 0, 0.05) 0px,
+                    rgba(0, 0, 0, 0.05) 1px,
+                    transparent 1px,
+                    transparent 4px
+            );
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        /* MODIFICATION DES OMBRES POUR UN STYLE PLUS ORGANIQUE */
+        .file-container {
+            box-shadow: 15px 15px 0px rgba(46, 94, 46, 0.3);
+            border: 3px solid var(--dr-black);
+        }
+
+        /* AJOUT D'UN EFFET DE TAMPON HUMIDE */
+        .watermark {
+            position: absolute;
+            opacity: 0.1;
+            font-size: 15rem;
+            transform: rotate(-45deg);
+            color: var(--dr-green);
+            font-family: Impact;
+            pointer-events: none;
+            z-index: -1;
+            top: 30%;
+            left: -50px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="file-container">
+    <div class="watermark">NORMAL</div>
+
+    <!-- EN-TÊTE RÉVISÉE -->
+    <div class="header" style="border-bottom-color: var(--dr-accent);">
+        <div class="header-text">
+            <h1 style="color: var(--dr-accent);">MAKOTO NAEGI</h1>
+            <div class="sub">ARCHIVE #000 - SUJET BASELINE</div>
+        </div>
+        <div class="logo-box" style="border-color: var(--dr-accent);">
+            PROJET<br>RÉGÉNÉRATION
+        </div>
+    </div>
+
+    <div class="content-grid">
+
+        <!-- NOUVELLE BARRE LATÉRALE -->
+        <div class="sidebar">
+            <div class="data-block">
+                <div class="data-row"><span class="label">Cohorte</span> <span class="value">Groupe Témoin</span></div>
+                <div class="data-row"><span class="label">Indice de Résilience</span> <span class="value">187%</span></div>
+                <div class="data-row"><span class="label">Potentiel Caché</span> <span class="value">[REDACTED]</span></div>
+            </div>
+
+            <div class="relations-box" style="background: var(--dr-green);">
+                <h4>CONNEXIONS PRÉMONITOIRES</h4>
+                <div class="relation-item">
+                    <strong>Jin Kirigiri</strong><br>
+                    <span class="relation-role">Surveillance spéciale (2014-2015)</span>
+                </div>
+                <div class="relation-item">
+                    <strong>Mukuro Ikusaba</strong><br>
+                    <span class="relation-role">Observation rapprochée</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENU PRINCIPAL RÉÉCRIT -->
+        <div class="main-info">
+
+            <div class="section-header">L'Anomalie de la Normalité</div>
+            <p>
+                Contrairement aux autres sujets du programme Hope's Peak, Makoto représente un paradoxe vivant :
+                son ADN ne présente aucune mutation particulière, ses résultats académiques flirtent avec la moyenne nationale,
+                mais son <em>indice de cohésion sociale</em> dépasse systématiquement les prévisions de 300%.
+            </p>
+
+            <div class="section-header">Fonctionnement de la "Chance"</div>
+            <div class="timeline-item">
+                <span class="timeline-title">Phénomène #78-A</span>
+                Les capteurs émotionnels révèlent une inversion systématique des ondes cérébrales lors des événements
+                qualifiés de "chanceux" : activité préfrontale réduite (-40%) contre stimulation accrue du cervelet (+120%).
+                Ce schéma correspond aux états méditatifs avancés.
+            </div>
+
+            <div class="section-header">Événements Clés Pré-Sélection</div>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-title">Incident du Parc Negishi (2014)</span>
+                    Sauvetage spontané de Komaru d'un incendie, malgré une phobie documentée du feu. Les caméras de
+                    surveillance montrent Makoto traversant les flammes avec une précision anormale.
+                </li>
+                <li class="event-item">
+                    <span class="event-title">Rencontre avec Mukuro Ikusaba (2015)</span>
+                    Interaction non enregistrée dans les fichiers officiels : échange de 4min17s dans une librairie
+                    d'occasion. Sujet rapporté avoir "oublié" l'incident pendant 72h.
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- NOUVEAU PIED DE PAGE PROPHÉTIQUE -->
+    <div class="footer-quote" style="border-top-color: var(--dr-accent);">
+        "Les graines de l'espoir germent toujours dans la terre la plus aride."
+        <span>- NOTE MARGINALE D'UN RAPPORT CLASSÉ</span>
+    </div>
+</div>
+
+</body>
+</html>

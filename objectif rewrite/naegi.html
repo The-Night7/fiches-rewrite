@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dossier Confidentiel : Makoto Naegi (Pré-Jeu)</title>
+    <style>
+        /* --- STYLE IDENTITÉ VISUELLE NAEGI --- */
+        :root {
+            --dr-green: #56ab2f; /* Vert Espoir */
+            --dr-dark: #1b1b1b;
+            --dr-light: #f4f7f6;
+            --dr-accent: #a8e063;
+        }
+
+        body {
+            background-color: #2c3e50;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            /* Motif de fond style "Digital" */
+            background-image:
+                    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* --- CONTENEUR PRINCIPAL --- */
+        .file-container {
+            background-color: var(--dr-light);
+            width: 900px;
+            max-width: 100%;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+            border-left: 10px solid var(--dr-green);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* --- EN-TÊTE TYPE "RAPPORT" --- */
+        .header {
+            background-color: var(--dr-dark);
+            color: white;
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--dr-green);
+        }
+
+        .header-title h1 {
+            margin: 0;
+            font-family: Impact, sans-serif;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .header-title .classification {
+            color: var(--dr-green);
+            font-weight: bold;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+        }
+
+        .stamp-box {
+            border: 2px dashed var(--dr-green);
+            color: var(--dr-green);
+            padding: 5px 15px;
+            font-weight: bold;
+            transform: rotate(-10deg);
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        /* --- GRILLE DE CONTENU --- */
+        .content {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 0;
+        }
+
+        /* --- SIDEBAR (GAUCHE) --- */
+        .sidebar {
+            background-color: #e8e8e8;
+            padding: 20px;
+            border-right: 1px solid #ccc;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .photo-frame {
+            width: 100%;
+            height: auto;
+            border: 5px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            background: white;
+            margin-bottom: 10px;
+        }
+
+        .info-block {
+            font-size: 0.85rem;
+            border-top: 2px solid var(--dr-dark);
+            padding-top: 10px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            border-bottom: 1px dotted #bbb;
+            padding-bottom: 2px;
+        }
+        .label { font-weight: bold; color: var(--dr-dark); }
+        .value { color: #555; text-align: right; }
+
+        .note-box {
+            background-color: var(--dr-dark);
+            color: var(--dr-green);
+            padding: 10px;
+            font-size: 0.75rem;
+            margin-top: auto;
+        }
+
+        /* --- ZONE DE TEXTE (DROITE) --- */
+        .main-text {
+            padding: 30px;
+            color: #333;
+        }
+
+        .section-header {
+            background: linear-gradient(90deg, var(--dr-green) 0%, transparent 100%);
+            color: white;
+            padding: 5px 15px;
+            font-family: Impact, sans-serif;
+            font-size: 1.3rem;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        .section-header:first-child { margin-top: 0; }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            text-align: justify;
+            font-size: 0.95rem;
+        }
+
+        /* --- LISTE D'ÉVÉNEMENTS --- */
+        .event-list {
+            list-style: none;
+            padding: 0;
+        }
+        .event-item {
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 3px solid var(--dr-green);
+        }
+        .event-title {
+            font-weight: bold;
+            display: block;
+            color: var(--dr-dark);
+            margin-bottom: 3px;
+        }
+        .event-desc {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            background-color: var(--dr-dark);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            border-top: 4px solid var(--dr-green);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .content { grid-template-columns: 1fr; }
+            .sidebar { border-right: none; border-bottom: 2px solid var(--dr-dark); }
+            .file-container { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="file-container">
+    <!-- EN-TÊTE -->
+    <div class="header">
+        <div class="header-title">
+            <div class="classification">DOSSIER D'ADMISSION // CLASSE 78</div>
+            <h1>MAKOTO NAEGI</h1>
+        </div>
+        <div class="stamp-box">SÉLECTIONNÉ</div>
+    </div>
+
+    <div class="content">
+        <!-- BARRE LATÉRALE -->
+        <div class="sidebar">
+            <img src="https://static.wikia.nocookie.net/danganronpa/images/6/61/Makoto_Naegi_Trigger_Happy_Havoc_Fullbody_Sprite_06.png" alt="Naegi Makoto" class="photo-frame">
+
+            <div class="info-block">
+                <div class="info-row"><span class="label">Âge</span> <span class="value">17 ans</span></div>
+                <div class="info-row"><span class="label">Origine</span> <span class="value">Lycée Blackroot</span></div>
+                <div class="info-row"><span class="label">Famille</span> <span class="value">Parents, Komaru (Sœur)</span></div>
+                <div class="info-row"><span class="label">Moyenne</span> <span class="value">Exactement au milieu</span></div>
+                <div class="info-row"><span class="label">Talent</span> <span class="value">Ultime Chanceux</span></div>
+            </div>
+
+            <div class="info-block">
+                <div class="info-row"><span class="label">Hobbies</span> <span class="value">Jeux Vidéo, TV</span></div>
+                <div class="info-row"><span class="label">Phobie</span> <span class="value">Être le centre d'attention</span></div>
+            </div>
+
+            <div class="note-box">
+                <strong>NOTE DU RECRUTEUR :</strong><br>
+                "Aucun talent particulier détecté. Paramètres physiques et intellectuels dans la moyenne nationale stricte. Candidat idéal pour le tirage au sort annuel."
+            </div>
+        </div>
+
+        <!-- CONTENU PRINCIPAL -->
+        <div class="main-text">
+
+            <div class="section-header">I. L'Incarnation de la Médiocrité</div>
+            <p>
+                Makoto Naegi est l'archétype du "garçon ordinaire". Avant sa sélection, il menait une vie dénuée de tout événement notable. Il vit avec ses parents et sa petite sœur Komaru, avec qui il entretient une relation faite de chamailleries banales et d'affection tacite.
+            </p>
+            <p>
+                Il ne possède aucun hobby obsessionnel, aucune note exceptionnelle (ni bonne, ni mauvaise) et aucun traumatisme passé. Cette "normalité" est si profonde qu'elle en devient presque une anomalie statistique. Il se décrit lui-même comme un protagoniste de second plan dans sa propre vie.
+            </p>
+
+            <div class="section-header">II. Analyse du "Facteur Chance"</div>
+            <p>
+                Contrairement à Nagito Komaeda dont la chance est absolue et destructrice, la chance de Makoto fonctionne sur un principe de <strong>compensation karmique immédiate</strong>.
+            </p>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-title">Le Mécanisme</span>
+                    Une série de petits malheurs (perdre ses clés, rater le bus) qui le protègent souvent d'un désastre bien plus grand, ou qui le conduisent à une opportunité inespérée.
+                </li>
+                <li class="event-item">
+                    <span class="event-title">L'Intuition Latente</span>
+                    Bien qu'il l'ignore, Makoto possède une intuition sociale très développée, capable de sentir le malaise chez autrui, ce qui est souvent confondu avec de la chance lors de ses interactions.
+                </li>
+            </ul>
+
+            <div class="section-header">III. L'Incident du 20 Août (La Sélection)</div>
+            <p>
+                Le jour où Makoto a été sélectionné comme l'Ultime Chanceux est la clé de voûte de son destin. Ce qui devait être une journée normale s'est transformé en une réaction en chaîne chaotique :
+            </p>
+            <ul class="event-list">
+                <li class="event-item">
+                    <span class="event-title">08:00 - Le Vol</span>
+                    En allant au magasin, Makoto assiste à un braquage. Les voleurs bousculent Makoto, déchirant son sac de cours et ses affaires.
+                </li>
+                <li class="event-item">
+                    <span class="event-title">12:30 - La Perte</span>
+                    À cause de l'incident du matin, il perd son ticket de participation original pour le tirage au sort de la Hope's Peak Academy, qu'il avait jeté par désintérêt.
+                </li>
+                <li class="event-item">
+                    <span class="event-title">16:00 - Le Tirage</span>
+                    L'administration de l'Académie réalise qu'il manque des candidats suite à une erreur administrative. Pour combler le vide, ils effectuent un tirage supplémentaire parmi les "déchets" de la base de données. Le nom de Makoto sort en premier.
+                </li>
+            </ul>
+            <p>
+                <strong>Conclusion :</strong> Si Makoto n'avait pas eu cette journée "maudite", il n'aurait jamais été chez lui pour recevoir l'appel, ou son dossier n'aurait jamais été réexaminé. Sa pire journée est devenue celle de son ascension.
+            </p>
+
+            <div class="section-header">IV. Relations Pré-Existantes</div>
+            <p>
+                <strong>Sayaka Maizono :</strong> Ils fréquentaient le même collège (Negishi Blackroot). Bien qu'ils ne se soient jamais parlé directement, un lien invisible existe. Makoto a un jour sauvé une grue blessée dans la cour de l'école, un acte de gentillesse pure observé de loin par Sayaka, qui n'a jamais oublié ce moment de douceur dans son monde de show-business brutal.
+            </p>
+        </div>
+    </div>
+
+    <!-- PIED DE PAGE -->
+    <div class="footer">
+        HOPE'S PEAK ACADEMY - DOSSIER CONFIDENTIEL - NE PAS DIFFUSER<br>
+        "Le talent n'est pas tout. Parfois, il suffit d'être là au bon moment."
+    </div>
+</div>
+
+</body>
+</html>

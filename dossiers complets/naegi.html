@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dossier Complet : Makoto Naegi</title>
+    <style>
+        /* --- STYLE GÉNÉRAL --- */
+        :root {
+            --dr-green: #4b9e4b; /* Vert Naegi */
+            --dr-black: #1a1a1a;
+            --dr-paper: #fdfdfd;
+            --dr-text: #333;
+        }
+
+        body {
+            background-color: #222;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            background-image: linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent);
+            background-size: 50px 50px;
+        }
+
+        /* --- CONTENEUR PRINCIPAL --- */
+        .file-container {
+            background-color: var(--dr-paper);
+            width: 900px;
+            max-width: 100%;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            border: 2px solid var(--dr-black);
+            position: relative;
+        }
+
+        /* --- HEADER --- */
+        .header {
+            background-color: var(--dr-black);
+            color: white;
+            padding: 25px;
+            border-bottom: 6px solid var(--dr-green);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-text h1 {
+            margin: 0;
+            font-family: Impact, sans-serif;
+            font-size: 2.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .header-text .sub {
+            color: var(--dr-green);
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        .logo-box {
+            border: 2px solid var(--dr-green);
+            padding: 5px 10px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            text-align: center;
+            transform: rotate(-5deg);
+        }
+
+        /* --- LAYOUT DU CONTENU --- */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 0;
+        }
+
+        /* --- SIDEBAR (GAUCHE) --- */
+        .sidebar {
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-right: 2px solid var(--dr-black);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .mugshot {
+            width: 100%;
+            height: auto;
+            border: 4px solid var(--dr-black);
+            background: white;
+            filter: contrast(1.1);
+        }
+
+        .data-block {
+            border-top: 2px solid var(--dr-black);
+            padding-top: 10px;
+        }
+
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+            border-bottom: 1px dotted #ccc;
+        }
+        .data-label { font-weight: bold; color: var(--dr-black); }
+        .data-val { color: #555; }
+
+        .relations-box {
+            background: var(--dr-black);
+            color: white;
+            padding: 10px;
+            font-size: 0.8rem;
+        }
+        .relations-box h4 { margin: 0 0 5px 0; color: var(--dr-green); border-bottom: 1px solid white;}
+        .relation-item { margin-bottom: 4px; }
+        .relation-role { color: #aaa; font-size: 0.7rem; }
+
+        /* --- MAIN CONTENT (DROITE) --- */
+        .main-info {
+            padding: 30px;
+        }
+
+        .title-banner {
+            background: linear-gradient(90deg, var(--dr-green) 0%, transparent 90%);
+            color: white;
+            padding: 8px 15px;
+            font-family: Impact, sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            margin-top: 25px;
+            text-transform: uppercase;
+        }
+        .title-banner:first-child { margin-top: 0; }
+
+        p {
+            line-height: 1.6;
+            font-size: 0.95rem;
+            text-align: justify;
+            margin-bottom: 15px;
+            color: var(--dr-text);
+        }
+
+        .highlight {
+            background-color: rgba(75, 158, 75, 0.2);
+            padding: 0 4px;
+            font-weight: bold;
+        }
+
+        /* --- TIMELINE STYLE --- */
+        .timeline-item {
+            border-left: 3px solid var(--dr-green);
+            padding-left: 15px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 13px;
+            height: 13px;
+            background: var(--dr-green);
+            border-radius: 50%;
+        }
+        .timeline-title {
+            font-weight: bold;
+            color: var(--dr-black);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        /* --- FOOTER --- */
+        .footer-quote {
+            grid-column: 1 / -1;
+            background-color: var(--dr-black);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            font-style: italic;
+            border-top: 6px solid var(--dr-green);
+        }
+        .footer-quote span {
+            font-size: 1.2rem;
+            color: var(--dr-green);
+            display: block;
+            margin-top: 10px;
+            font-family: Impact, sans-serif;
+            font-style: normal;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .sidebar { border-right: none; border-bottom: 2px solid var(--dr-black); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="file-container">
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-text">
+            <h1>Makoto Naegi</h1>
+            <div class="sub">SUJET N°78-A // PROTAGONISTE</div>
+        </div>
+        <div class="logo-box">
+            HOPE'S PEAK<br>DATABASE<br>VER. 2.0
+        </div>
+    </div>
+
+    <div class="content-grid">
+
+        <!-- BARRE LATÉRALE (GAUCHE) -->
+        <div class="sidebar">
+            <img src="https://static.wikia.nocookie.net/danganronpa/images/6/61/Makoto_Naegi_Trigger_Happy_Havoc_Fullbody_Sprite_06.png" alt="Makoto Naegi" class="mugshot">
+
+            <div class="data-block">
+                <div class="data-row"><span class="data-label">Talent Initial</span> <span class="data-val">Ultime Chanceux</span></div>
+                <div class="data-row"><span class="data-label">Talent Final</span> <span class="data-val" style="color:var(--dr-green); font-weight:bold;">Ultime Espoir</span></div>
+                <div class="data-row"><span class="data-label">Anniversaire</span> <span class="data-val">5 Février</span></div>
+                <div class="data-row"><span class="data-label">Taille / Poids</span> <span class="data-val">160cm / 52kg</span></div>
+                <div class="data-row"><span class="data-label">Groupe Sanguin</span> <span class="data-val">A</span></div>
+            </div>
+
+            <div class="data-block">
+                <div class="data-row"><span class="data-label">Aime</span> <span class="data-val">Curry, Choses à la mode</span></div>
+                <div class="data-row"><span class="data-label">N'aime pas</span> <span class="data-val">Maquereau séché</span></div>
+            </div>
+
+            <div class="relations-box">
+                <h4>RELATIONS CLÉS</h4>
+                <div class="relation-item">
+                    <strong>Kyoko Kirigiri</strong><br>
+                    <span class="relation-role">Partenaire & Soutien mutuel</span>
+                </div>
+                <div class="relation-item">
+                    <strong>Byakuya Togami</strong><br>
+                    <span class="relation-role">Rival idéologique</span>
+                </div>
+                <div class="relation-item">
+                    <strong>Sayaka Maizono</strong><br>
+                    <span class="relation-role">Amie d'enfance (Collège)</span>
+                </div>
+                <div class="relation-item">
+                    <strong>Komaru Naegi</strong><br>
+                    <span class="relation-role">Petite sœur</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENU PRINCIPAL (DROITE) -->
+        <div class="main-info">
+
+            <!-- SECTION 1 -->
+            <div class="title-banner">Profil Psychologique</div>
+            <p>
+                Contrairement aux autres étudiants de la classe 78 qui possèdent des personnalités excentriques, Makoto est souvent décrit comme un "mâle herbivore" : passif, gentil et terriblement ordinaire. Cependant, cette normalité est sa plus grande arme.
+            </p>
+            <p>
+                Il possède une résilience mentale hors du commun. Là où les génies sombrent dans la folie face au désespoir, Makoto reste stable. Il est capable de pardonner l'impardonnable et de voir le bon côté des gens, ce qui lui permet de fédérer les survivants autour de lui. Kyoko Kirigiri dira de lui qu'il est une personne capable de "passer outre la logique pour atteindre la vérité émotionnelle".
+            </p>
+
+            <!-- SECTION 2 -->
+            <div class="title-banner">Analyse du Talent : La Chance</div>
+            <p>
+                Son titre d'<strong>Ultime Chanceux</strong> (Ultimate Lucky Student) est paradoxal. Sa chance ne se manifeste pas comme une bénédiction constante, mais comme un cycle imprévisible de malheurs menant à un résultat final positif.
+            </p>
+            <p>
+                <em>Exemple :</em> Sa télécommande se casse, l'empêchant de voir une émission, mais cela lui évite d'être témoin d'un événement traumatisant. Ou encore, la porte de sa salle de bain est coincée (malchance), ce qui s'avère crucial pour prouver son innocence lors d'un procès (chance).
+            </p>
+
+            <!-- SECTION 3 (TIMELINE) -->
+            <div class="title-banner">Chronologie des Événements</div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">PRÉ-JEU : La Sélection</span>
+                Makoto vivait une vie banale avec ses parents et sa sœur Komaru. Il a été sélectionné par tirage au sort parmi tous les lycéens du pays pour intégrer l'Académie Hope's Peak. Ironiquement, le jour du tirage, une série de catastrophes mineures lui est arrivée, détruisant ses affaires, mais lui permettant d'être le seul éligible au moment du tirage.
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">LA TRAGÉDIE : Les Années Oubliées</span>
+                Il a vécu deux ans à l'académie avec ses camarades, nouant des liens forts. Lorsque "La Tragédie" a frappé le monde extérieur, le directeur Jin Kirigiri a transformé l'école en abri pour les protéger. Cependant, leurs mémoires de ces deux années ont été effacées par l'Ultime Désespoir.
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">LE JEU DE LA TUERIE : L'Éveil</span>
+                Durant le jeu, Makoto s'est imposé comme l'enquêteur principal. Bien que trahi par Sayaka Maizono dès le début, il a refusé de la blâmer. Son moment décisif survient lors du Chapitre 5 : il choisit de ne pas exposer le mensonge de Kyoko Kirigiri, acceptant d'être exécuté à sa place. Il survit miraculeusement à l'exécution grâce à l'intervention d'Alter Ego.
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">FINAL : L'Ultime Espoir</span>
+                Lors du dernier procès, il confronte Junko Enoshima. Alors que ses camarades sombrent dans le désespoir face à l'état du monde extérieur, Makoto les galvanise un par un. Il ne nie pas le désespoir, mais refuse d'abandonner. C'est à cet instant qu'il gagne son véritable titre : <strong>Ultime Espoir</strong>.
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">POST-JEU : Future Foundation</span>
+                Après s'être échappé, il rejoint la 14ème division de la Future Foundation. Il sera plus tard accusé de trahison pour avoir tenté de sauver les "Restes du Désespoir" (les étudiants de Danganronpa 2) au lieu de les exécuter, prouvant encore une fois sa foi inébranlable en la rédemption.
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer-quote">
+        "Je ne suis pas spécial. Je ne suis pas un génie. Mais tant que j'ai de l'espoir, je continuerai d'avancer, peu importe la difficulté !"
+        <span>- MAKOTO NAEGI</span>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dossier Disciplinaire : Kiyotaka Ishimaru</title>
+    <style>
+        /* --- STYLE IDENTITÉ VISUELLE ISHIMARU --- */
+        :root {
+            --dr-red: #b71c1c; /* Rouge Brassard */
+            --dr-gold: #d4af37; /* Or Boutons */
+            --dr-white: #fdfdfd;
+            --dr-ink: #0a0a0a;
+        }
+
+        body {
+            background-color: #2b2b2b;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            /* Motif strict et répété */
+            background-image: repeating-linear-gradient(45deg, #333 25%, transparent 25%, transparent 75%, #333 75%, #333), repeating-linear-gradient(45deg, #333 25%, #2b2b2b 25%, #2b2b2b 75%, #333 75%, #333);
+            background-position: 0 0, 10px 10px;
+            background-size: 20px 20px;
+        }
+
+        /* --- CONTENEUR PRINCIPAL --- */
+        .file-container {
+            background-color: var(--dr-white);
+            width: 900px;
+            max-width: 100%;
+            box-shadow: 10px 10px 0px var(--dr-red);
+            border: 4px solid var(--dr-ink);
+            position: relative;
+        }
+
+        /* --- HEADER --- */
+        .header {
+            background-color: var(--dr-red);
+            color: white;
+            padding: 25px;
+            border-bottom: 4px solid var(--dr-gold);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-text h1 {
+            margin: 0;
+            font-family: Impact, sans-serif;
+            font-size: 2.6rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 0px var(--dr-ink);
+        }
+
+        .header-text .sub {
+            color: var(--dr-gold);
+            font-weight: bold;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+        }
+
+        .badge-box {
+            border: 2px solid white;
+            padding: 8px 15px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            text-align: center;
+            background: var(--dr-ink);
+            color: var(--dr-gold);
+        }
+
+        /* --- LAYOUT DU CONTENU --- */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 0;
+        }
+
+        /* --- SIDEBAR (GAUCHE) --- */
+        .sidebar {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-right: 2px solid var(--dr-ink);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .mugshot {
+            width: 100%;
+            height: auto;
+            border: 3px solid var(--dr-ink);
+            background: white;
+            /* Léger effet vieilli */
+            filter: sepia(20%);
+        }
+
+        .data-block {
+            border-top: 2px solid var(--dr-ink);
+            padding-top: 10px;
+        }
+
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 2px;
+        }
+        .data-label { font-weight: bold; color: var(--dr-red); text-transform: uppercase; }
+        .data-val { color: var(--dr-ink); text-align: right; }
+
+        .motto-box {
+            background: var(--dr-ink);
+            color: white;
+            padding: 15px;
+            font-size: 0.85rem;
+            text-align: center;
+            font-style: italic;
+            border: 1px solid var(--dr-red);
+        }
+
+        /* --- MAIN CONTENT (DROITE) --- */
+        .main-info {
+            padding: 35px;
+        }
+
+        .title-banner {
+            background: var(--dr-ink);
+            color: white;
+            padding: 8px 20px;
+            font-family: Impact, sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            margin-top: 30px;
+            text-transform: uppercase;
+            border-left: 10px solid var(--dr-red);
+        }
+        .title-banner:first-child { margin-top: 0; }
+
+        p {
+            line-height: 1.6;
+            font-size: 0.95rem;
+            text-align: justify;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        /* --- TIMELINE STRICTE --- */
+        .timeline-item {
+            border-left: 4px solid var(--dr-red);
+            padding-left: 20px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        .timeline-item::before {
+            content: '⚠';
+            position: absolute;
+            left: -14px;
+            top: -5px;
+            background: var(--dr-white);
+            color: var(--dr-red);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .timeline-title {
+            font-weight: bold;
+            color: var(--dr-ink);
+            text-transform: uppercase;
+            font-size: 1rem;
+            margin-bottom: 5px;
+            display: block;
+            text-decoration: underline;
+            decoration-color: var(--dr-gold);
+        }
+
+        /* --- FOOTER --- */
+        .footer-stamp {
+            grid-column: 1 / -1;
+            background-color: var(--dr-red);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: 2px;
+            border-top: 4px solid var(--dr-gold);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .sidebar { border-right: none; border-bottom: 2px solid var(--dr-ink); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="file-container">
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-text">
+            <h1>KIYOTAKA ISHIMARU</h1>
+            <div class="sub">DOSSIER DISCIPLINAIRE // CLASSE 78</div>
+        </div>
+        <div class="badge-box">
+            MORALITÉ<br>ABSOLUE
+        </div>
+    </div>
+
+    <div class="content-grid">
+
+        <!-- BARRE LATÉRALE -->
+        <div class="sidebar">
+            <img src="https://static.wikia.nocookie.net/danganronpa/images/7/71/Kiyotaka_Ishimaru_Trigger_Happy_Havoc_Fullbody_Sprite_03.png" alt="Kiyotaka Ishimaru" class="mugshot">
+
+            <div class="data-block">
+                <div class="data-row"><span class="data-label">Talent</span> <span class="data-val">Ultime Préfet</span></div>
+                <div class="data-row"><span class="data-label">Anniversaire</span> <span class="data-val">31 Août</span></div>
+                <div class="data-row"><span class="data-label">Taille</span> <span class="data-val">176 cm</span></div>
+                <div class="data-row"><span class="data-label">Poids</span> <span class="data-val">66 kg</span></div>
+                <div class="data-row"><span class="data-label">Groupe</span> <span class="data-val">B</span></div>
+            </div>
+
+            <div class="data-block">
+                <div class="data-row"><span class="data-label">Aime</span> <span class="data-val">L'Ordre, L'Effort</span></div>
+                <div class="data-row"><span class="data-label">Déteste</span> <span class="data-val">Les Génies, La Paresse</span></div>
+            </div>
+
+            <div class="motto-box">
+                "Un génie n'est qu'une excuse pour ceux qui refusent de travailler !"
+            </div>
+
+            <div class="data-block">
+                <div class="data-row" style="display:block; text-align:center;">
+                    <span class="data-label">Note Sociale</span><br>
+                    <span style="color:red; font-size:1.5rem; font-weight:bold;">INEXISTANTE</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENU PRINCIPAL -->
+        <div class="main-info">
+
+            <!-- SECTION 1 -->
+            <div class="title-banner">I. Profil Psychologique</div>
+            <p>
+                Kiyotaka Ishimaru n'est pas simplement strict ; il est l'incarnation vivante de la rigidité. Il ne tolère aucun retard, aucune infraction vestimentaire et aucune vulgarité. Cependant, cette attitude n'est pas naturelle : c'est une armure forgée par des années de traumatisme social.
+            </p>
+            <p>
+                Il souffre d'un complexe d'infériorité masqué par une hyperactivité laborieuse. Il est persuadé que le concept de "génie" est une insulte à l'effort. Pour lui, tout s'acquiert par la douleur et la répétition. Socialement, il est inepte : il ne sait pas "jouer", ne comprend pas l'argot et prend chaque blague au premier degré, ce qui l'isole totalement de ses pairs.
+            </p>
+
+            <!-- SECTION 2 -->
+            <div class="title-banner">II. L'Héritage Maudit (Passif)</div>
+            <p>
+                Pour comprendre Ishimaru, il faut comprendre son nom de famille. Il est le petit-fils de <strong>Toranosuke Ishimaru</strong>, un ancien Premier Ministre du Japon.
+            </p>
+
+            <div class="timeline-item">
+                <span class="timeline-title">LA CHUTE DE LA MAISON ISHIMARU</span>
+                Son grand-père était un "génie" politique qui a fini par ruiner le pays et sa propre famille dans un scandale de corruption massif. La famille Ishimaru est passée de l'élite à la disgrâce publique, criblée de dettes astronomiques. Kiyotaka a grandi en voyant sa famille insultée et harcelée par les créanciers.
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">LA CROISADE PERSONNELLE</span>
+                En réaction, Kiyotaka a juré de restaurer l'honneur de son nom. Il a rejeté tout loisir (TV, jeux, sport pour le plaisir) pour se consacrer uniquement à l'étude et à la discipline. Il se lève à 4h00 du matin, étudie jusqu'à l'épuisement et ne dépense pas un yen superflu.
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">L'ISOLEMENT SCOLAIRE</span>
+                Dans ses écoles précédentes (Collège Kaisei), il était méprisé. Non seulement à cause de son nom, mais parce qu'il dénonçait systématiquement ses camarades pour la moindre infraction. Il n'a jamais eu d'ami, ni même de conversation informelle, avant son arrivée à Hope's Peak. Il considère l'amitié comme une "distraction inefficace".
+            </div>
+
+            <!-- SECTION 3 -->
+            <div class="title-banner">III. Recrutement à Hope's Peak</div>
+            <p>
+                Contrairement aux autres "Ultimes" recrutés pour un talent inné ou artistique, Kiyotaka a été recruté sur dossier pur. L'Académie a remarqué qu'il n'avait <strong>jamais</strong> manqué un jour d'école, n'avait <strong>jamais</strong> été en retard, et avait maintenu une moyenne parfaite uniquement par la force de la volonté, sans facilités intellectuelles particulières.
+            </p>
+            <p>
+                Il arrive à l'Académie avec un objectif clair : devenir le futur Premier Ministre et prouver au monde que "l'effort bat le talent".
+            </p>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer-stamp">
+        L'ORDRE EST LA PREMIÈRE LOI DU CIEL. TOUTE INFRACTION SERA PUNIE.
+    </div>
+</div>
+
+</body>
+</html>

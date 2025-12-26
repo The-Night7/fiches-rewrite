@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dossier Complet : Kiyotaka Ishimaru</title>
+    <style>
+        /* --- STYLE GÉNÉRAL --- */
+        :root {
+            --dr-red: #cc0000; /* Rouge Ishimaru */
+            --dr-black: #1a1a1a;
+            --dr-paper: #fdfdfd;
+            --dr-text: #333;
+        }
+
+        body {
+            background-color: #222;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            /* Fond : Lignes droites pour symboliser l'ordre */
+            background-image: repeating-linear-gradient(45deg, #2a2a2a 0, #2a2a2a 1px, transparent 0, transparent 50%);
+            background-size: 30px 30px;
+        }
+
+        /* --- CONTENEUR PRINCIPAL --- */
+        .file-container {
+            background-color: var(--dr-paper);
+            width: 900px;
+            max-width: 100%;
+            box-shadow: 10px 10px 0px var(--dr-red);
+            border: 4px solid var(--dr-black);
+            position: relative;
+        }
+
+        /* --- HEADER --- */
+        .header {
+            background-color: var(--dr-black);
+            color: white;
+            padding: 25px;
+            border-bottom: 6px solid var(--dr-red);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-text h1 {
+            margin: 0;
+            font-family: Impact, sans-serif;
+            font-size: 2.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .header-text .sub {
+            color: var(--dr-red);
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        .logo-box {
+            border: 2px solid var(--dr-red);
+            padding: 5px 10px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            text-align: center;
+            background: white;
+            color: var(--dr-black);
+        }
+
+        /* --- TAMPON --- */
+        .stamp {
+            position: absolute;
+            top: 80px;
+            right: 40px;
+            border: 4px solid var(--dr-red);
+            color: var(--dr-red);
+            padding: 5px 20px;
+            font-weight: bold;
+            font-size: 1.5rem;
+            transform: rotate(-20deg);
+            opacity: 0.7;
+            font-family: Impact, sans-serif;
+            z-index: 10;
+        }
+
+        /* --- LAYOUT DU CONTENU --- */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 0;
+        }
+
+        /* --- SIDEBAR (GAUCHE) --- */
+        .sidebar {
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-right: 2px solid var(--dr-black);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .mugshot {
+            width: 100%;
+            height: auto;
+            border: 4px solid var(--dr-black);
+            background: white;
+        }
+
+        .data-block {
+            border-top: 2px solid var(--dr-black);
+            padding-top: 10px;
+        }
+
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+            border-bottom: 1px dotted #ccc;
+        }
+        .data-label { font-weight: bold; color: var(--dr-black); }
+        .data-val { color: #555; }
+
+        .relations-box {
+            background: var(--dr-black);
+            color: white;
+            padding: 10px;
+            font-size: 0.8rem;
+        }
+        .relations-box h4 { margin: 0 0 5px 0; color: var(--dr-red); border-bottom: 1px solid white;}
+        .relation-item { margin-bottom: 8px; }
+        .relation-role { color: #aaa; font-size: 0.7rem; display: block; }
+
+        /* --- MAIN CONTENT (DROITE) --- */
+        .main-info {
+            padding: 30px;
+        }
+
+        .title-banner {
+            background: linear-gradient(90deg, var(--dr-red) 0%, transparent 90%);
+            color: white;
+            padding: 8px 15px;
+            font-family: Impact, sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            margin-top: 25px;
+            text-transform: uppercase;
+            border-left: 10px solid var(--dr-black);
+        }
+        .title-banner:first-child { margin-top: 0; }
+
+        p {
+            line-height: 1.6;
+            font-size: 0.95rem;
+            text-align: justify;
+            margin-bottom: 15px;
+            color: var(--dr-text);
+        }
+
+        /* --- TIMELINE STYLE --- */
+        .timeline-item {
+            border-left: 3px solid var(--dr-red);
+            padding-left: 15px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 13px;
+            height: 13px;
+            background: var(--dr-red);
+            border-radius: 50%; /* Carré pour Ishimaru ? Non, gardons rond pour uniformité */
+            border: 2px solid var(--dr-black);
+        }
+        .timeline-title {
+            font-weight: bold;
+            color: var(--dr-black);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        /* --- FOOTER --- */
+        .footer-quote {
+            grid-column: 1 / -1;
+            background-color: var(--dr-black);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            font-style: italic;
+            border-top: 6px solid var(--dr-red);
+        }
+        .footer-quote span {
+            font-size: 1.2rem;
+            color: var(--dr-red);
+            display: block;
+            margin-top: 10px;
+            font-family: Impact, sans-serif;
+            font-style: normal;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .sidebar { border-right: none; border-bottom: 2px solid var(--dr-black); }
+            .stamp { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="file-container">
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-text">
+            <h1>Kiyotaka Ishimaru</h1>
+            <div class="sub">SUJET N°78-06 // VICTIME</div>
+        </div>
+        <div class="logo-box">
+            MORAL<br>COMMITTEE<br>APPROVED
+        </div>
+    </div>
+
+    <!-- TAMPON DECES -->
+    <div class="stamp">DÉCÉDÉ</div>
+
+    <div class="content-grid">
+
+        <!-- BARRE LATÉRALE (GAUCHE) -->
+        <div class="sidebar">
+            <img src="https://static.wikia.nocookie.net/danganronpa/images/7/75/Kiyotaka_Ishimaru_Trigger_Happy_Havoc_Fullbody_Sprite_03.png" alt="Kiyotaka Ishimaru" class="mugshot">
+
+            <div class="data-block">
+                <div class="data-row"><span class="data-label">Talent</span> <span class="data-val">Ultime Préfet</span></div>
+                <div class="data-row"><span class="data-label">Anniversaire</span> <span class="data-val">31 Août</span></div>
+                <div class="data-row"><span class="data-label">Taille</span> <span class="data-val">176 cm</span></div>
+                <div class="data-row"><span class="data-label">Poids</span> <span class="data-val">66 kg</span></div>
+                <div class="data-row"><span class="data-label">Groupe Sanguin</span> <span class="data-val">B</span></div>
+            </div>
+
+            <div class="data-block">
+                <div class="data-row"><span class="data-label">Aime</span> <span class="data-val">L'ordre, L'effort</span></div>
+                <div class="data-row"><span class="data-label">N'aime pas</span> <span class="data-val">L'indolence</span></div>
+            </div>
+
+            <div class="relations-box">
+                <h4>RELATIONS CLÉS</h4>
+                <div class="relation-item">
+                    <strong>Mondo Owada</strong><br>
+                    <span class="relation-role">"Kyodai" (Frère d'âme)</span>
+                </div>
+                <div class="relation-item">
+                    <strong>Hifumi Yamada</strong><br>
+                    <span class="relation-role">Rival & Tueur</span>
+                </div>
+                <div class="relation-item">
+                    <strong>Celestia Ludenberg</strong><br>
+                    <span class="relation-role">Manipulatrice</span>
+                </div>
+                <div class="relation-item">
+                    <strong>Alter Ego</strong><br>
+                    <span class="relation-role">Objet d'obsession</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENU PRINCIPAL (DROITE) -->
+        <div class="main-info">
+
+            <!-- SECTION 1 -->
+            <div class="title-banner">Profil Psychologique</div>
+            <p>
+                Kiyotaka, surnommé "Taka", est l'incarnation vivante de la discipline. Intense, bruyant et socialement inadapté, il ne comprend ni l'argot ni les loisirs des adolescents normaux. Il considère que chaque seconde non consacrée à l'étude ou à l'amélioration de soi est un gâchis.
+            </p>
+            <p>
+                Derrière cette rigidité se cache une profonde insécurité et une solitude immense. N'ayant jamais eu d'amis à cause de son dévouement aux études, il est extrêmement vulnérable émotionnellement lorsqu'il s'attache enfin à quelqu'un. Il méprise le concept de "génie inné", croyant fermement que seul l'effort acharné a de la valeur.
+            </p>
+
+            <!-- SECTION 2 -->
+            <div class="title-banner">Analyse du Talent : Ultime Préfet</div>
+            <p>
+                Son titre d'<strong>Ultime Préfet</strong> (Moral Compass) ne vient pas d'un don naturel, mais d'une discipline de fer. Il est capable de maintenir l'ordre dans n'importe quelle situation et possède une volonté inébranlable.
+            </p>
+            <p>
+                <em>Héritage Familial :</em> Son grand-père, Toranosuke Ishimaru, était un Premier Ministre brillant mais corrompu, qui a déshonoré la famille. Kiyotaka a juré de restaurer l'honneur des Ishimaru en suivant une voie morale pure et stricte, rejetant toute forme de raccourci.
+            </p>
+
+            <!-- SECTION 3 (TIMELINE) -->
+            <div class="title-banner">Chronologie des Événements</div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">CHAPITRE 1 : Le Leader Autoproclamé</span>
+                Dès le début du jeu de la mort, Taka tente d'organiser des réunions matinales obligatoires pour maintenir le moral et l'ordre. Ses tentatives sont souvent ignorées, mais il persiste.
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">CHAPITRE 2 : Le Duel du Sauna</span>
+                Il entre en conflit direct avec Mondo Owada, le délinquant. Leur rivalité culmine dans un défi d'endurance dans le sauna de l'école. Au bord de l'évanouissement, les deux garçons tissent un lien indéfectible, devenant "Kyodai" (frères).
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">LE TRAUMATISME : L'Exécution de Mondo</span>
+                Lorsque Mondo est révélé comme le tueur de Chihiro Fujisaki et exécuté (transformé en beurre), Taka s'effondre. Il sombre dans un état catatonique, cessant de parler et de manger, incapable de concilier sa morale (haïr le crime) et ses sentiments (aimer son ami).
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">CHAPITRE 3 : La Naissance de "Kiyondo"</span>
+                Après avoir parlé à Alter Ego qui imitait la voix de Mondo, Taka subit un choc psychologique. Il fusionne sa personnalité avec celle de Mondo, devenant "Kiyondo" (Ishida) : cheveux blancs, yeux en feu, agressif et vulgaire, mais motivé.
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">FIN DE PARTIE : Double Meurtre</span>
+                Alors qu'il se battait avec Hifumi Yamada pour l'attention d'Alter Ego, il est manipulé par Celestia Ludenberg. Il est tué par surprise par Hifumi (un coup de marteau "Justice Hammer 4" à la tête) dans le laboratoire de physique. Son corps est découvert peu avant celui de Hifumi.
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer-quote">
+        "Courir dans les couloirs est interdit ! L'oubli est interdit ! Je n'oublierai jamais... l'âme de mon frère !"
+        <span>- KIYOTAKA ISHIMARU</span>
+    </div>
+</div>
+
+</body>
+</html>
