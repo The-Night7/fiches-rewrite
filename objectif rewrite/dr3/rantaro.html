@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dossier Complet : Rantaro Amami (Pré-V3)</title>
+    <style>
+        /* --- STYLE GÉNÉRAL --- */
+        :root{
+            --dr-mint:#2aa56a;      /* Vert menthe “calme / secret” */
+            --dr-black:#1a1a1a;
+            --dr-paper:#fdfdfd;
+            --dr-text:#333;
+            --dr-muted:#666;
+            --dr-slate:#2a2f38;     /* Accent “dossier confidentiel” */
+        }
+
+        body{
+            background-color:#222;
+            font-family:'Courier New', Courier, monospace;
+            margin:0;
+            padding:40px;
+            display:flex;
+            justify-content:center;
+            background-image:
+                    linear-gradient(0deg, transparent 24%, rgba(255,255,255,.05) 25%, rgba(255,255,255,.05) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.05) 75%, rgba(255,255,255,.05) 76%, transparent 77%, transparent),
+                    linear-gradient(90deg, transparent 24%, rgba(255,255,255,.05) 25%, rgba(255,255,255,.05) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.05) 75%, rgba(255,255,255,.05) 76%, transparent 77%, transparent);
+            background-size:50px 50px;
+        }
+
+        /* --- CONTENEUR PRINCIPAL --- */
+        .file-container{
+            background-color:var(--dr-paper);
+            width:900px;
+            max-width:100%;
+            box-shadow:0 0 20px rgba(0,0,0,0.5);
+            border:2px solid var(--dr-black);
+            position:relative;
+        }
+
+        /* --- HEADER --- */
+        .header{
+            background-color:var(--dr-black);
+            color:#fff;
+            padding:25px;
+            border-bottom:6px solid var(--dr-mint);
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap:18px;
+        }
+
+        .header-text h1{
+            margin:0;
+            font-family:Impact, sans-serif;
+            font-size:2.6rem;
+            letter-spacing:2px;
+            text-transform:uppercase;
+        }
+
+        .header-text .sub{
+            color:var(--dr-mint);
+            font-weight:bold;
+            letter-spacing:3px;
+            margin-top:6px;
+            font-size:0.9rem;
+        }
+
+        .header-text .stamp{
+            display:inline-block;
+            margin-top:10px;
+            padding:4px 10px;
+            border:2px dashed rgba(255,255,255,0.5);
+            color:rgba(255,255,255,0.85);
+            font-size:0.75rem;
+            transform:rotate(1deg);
+        }
+
+        .logo-box{
+            border:2px solid var(--dr-mint);
+            padding:5px 10px;
+            font-weight:bold;
+            font-size:0.8rem;
+            text-align:center;
+            transform:rotate(-4deg);
+            min-width:150px;
+        }
+
+        /* --- LAYOUT --- */
+        .content-grid{
+            display:grid;
+            grid-template-columns:300px 1fr;
+            gap:0;
+        }
+
+        /* --- SIDEBAR --- */
+        .sidebar{
+            background-color:#f4f4f4;
+            padding:20px;
+            border-right:2px solid var(--dr-black);
+            display:flex;
+            flex-direction:column;
+            gap:18px;
+        }
+
+        .mugshot{
+            width:100%;
+            height:auto;
+            border:4px solid var(--dr-black);
+            background:#fff;
+            filter:contrast(1.05);
+        }
+
+        .data-block{
+            border-top:2px solid var(--dr-black);
+            padding-top:10px;
+        }
+
+        .data-row{
+            display:flex;
+            justify-content:space-between;
+            font-size:0.85rem;
+            margin-bottom:6px;
+            border-bottom:1px dotted #ccc;
+            gap:12px;
+        }
+        .data-label{ font-weight:bold; color:var(--dr-black); }
+        .data-val{ color:#555; text-align:right; }
+
+        .tagline{
+            background:#fff;
+            border:2px solid var(--dr-black);
+            padding:10px;
+            font-size:0.82rem;
+            color:var(--dr-text);
+        }
+        .tagline strong{ color:var(--dr-mint); }
+
+        .bullet-box{
+            background:#fff;
+            border:2px solid var(--dr-black);
+            padding:10px;
+            font-size:0.82rem;
+            color:var(--dr-text);
+        }
+        .bullet-box h4{
+            margin:0 0 8px 0;
+            font-family:Impact, sans-serif;
+            letter-spacing:1px;
+            text-transform:uppercase;
+            font-size:1rem;
+        }
+        .bullet-box ul{ margin:0; padding-left:18px; }
+        .bullet-box li{ margin:6px 0; }
+
+        .relations-box{
+            background:var(--dr-black);
+            color:#fff;
+            padding:10px;
+            font-size:0.8rem;
+        }
+        .relations-box h4{
+            margin:0 0 6px 0;
+            color:var(--dr-mint);
+            border-bottom:1px solid rgba(255,255,255,0.7);
+            padding-bottom:4px;
+        }
+        .relation-item{ margin-bottom:8px; }
+        .relation-role{ color:#aaa; font-size:0.7rem; }
+
+        .notice{
+            background:rgba(42, 47, 56, 0.08);
+            border-left:4px solid var(--dr-slate);
+            padding:10px;
+            font-size:0.82rem;
+            color:#11151b;
+        }
+        .notice strong{ color:var(--dr-slate); }
+
+        /* --- MAIN --- */
+        .main-info{ padding:30px; }
+
+        .title-banner{
+            background:linear-gradient(90deg, var(--dr-mint) 0%, transparent 90%);
+            color:#fff;
+            padding:8px 15px;
+            font-family:Impact, sans-serif;
+            font-size:1.25rem;
+            margin-bottom:15px;
+            margin-top:25px;
+            text-transform:uppercase;
+            letter-spacing:1px;
+        }
+        .title-banner:first-child{ margin-top:0; }
+
+        p{
+            line-height:1.65;
+            font-size:0.95rem;
+            text-align:justify;
+            margin-bottom:14px;
+            color:var(--dr-text);
+        }
+
+        .highlight{
+            background-color:rgba(42, 165, 106, 0.18);
+            padding:0 4px;
+            font-weight:bold;
+        }
+
+        .muted{ color:var(--dr-muted); }
+
+        .quote-box{
+            border:2px solid var(--dr-black);
+            padding:12px 14px;
+            background:#fff;
+            margin:14px 0;
+            font-style:italic;
+            color:#222;
+        }
+        .quote-box .src{
+            display:block;
+            margin-top:8px;
+            font-style:normal;
+            font-size:0.85rem;
+            color:var(--dr-muted);
+            text-align:right;
+        }
+
+        /* --- TIMELINE --- */
+        .timeline-item{
+            border-left:3px solid var(--dr-mint);
+            padding-left:15px;
+            margin-bottom:18px;
+            position:relative;
+        }
+        .timeline-item::before{
+            content:'';
+            position:absolute;
+            left:-8px;
+            top:2px;
+            width:13px;
+            height:13px;
+            background:var(--dr-mint);
+            border-radius:50%;
+        }
+        .timeline-title{
+            font-weight:bold;
+            color:var(--dr-black);
+            text-transform:uppercase;
+            font-size:0.9rem;
+            margin-bottom:6px;
+            display:block;
+        }
+
+        /* --- FOOTER --- */
+        .footer-quote{
+            grid-column:1 / -1;
+            background-color:var(--dr-black);
+            color:#fff;
+            padding:30px;
+            text-align:center;
+            font-style:italic;
+            border-top:6px solid var(--dr-mint);
+        }
+        .footer-quote span{
+            font-size:1.2rem;
+            color:var(--dr-mint);
+            display:block;
+            margin-top:10px;
+            font-family:Impact, sans-serif;
+            font-style:normal;
+            letter-spacing:1px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width:768px){
+            body{ padding:16px; }
+            .content-grid{ grid-template-columns:1fr; }
+            .sidebar{ border-right:none; border-bottom:2px solid var(--dr-black); }
+            .header{ flex-direction:column; align-items:flex-start; }
+            .logo-box{ transform:none; }
+        }
+    </style>
+</head>
+<body>
+<div class="file-container">
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-text">
+            <h1>Rantaro Amami</h1>
+            <div class="sub">DOSSIER ÉTUDIANT // “ULTIME” (PRÉ-INSCRIPTION)</div>
+            <div class="stamp">ARCHIVE : AVANT INCIDENT “KILLING GAME”</div>
+        </div>
+        <div class="logo-box">
+            HOPE'S PEAK<br />DATABASE<br />VER. 2.0
+        </div>
+    </div>
+
+    <div class="content-grid">
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <img
+                    src="https://static.wikia.nocookie.net/danganronpa/images/1/1a/Danganronpa_V3_Rantaro_Amami_Fullbody_Sprite_%281%29.png"
+                    alt="Rantaro Amami"
+                    class="mugshot"
+            />
+
+            <div class="tagline">
+                Angle presse : <strong>CALME</strong> + <strong>POLITESSE</strong> + <strong>ZONE D’OMBRE</strong>
+            </div>
+
+            <div class="data-block">
+                <div class="data-row"><span class="data-label">Statut</span> <span class="data-val">Candidature acceptée</span></div>
+                <div class="data-row"><span class="data-label">Talent (dossier)</span> <span class="data-val">Ultime ??? (non divulgué)</span></div>
+                <div class="data-row"><span class="data-label">Anniversaire</span> <span class="data-val">3 Octobre</span></div>
+                <div class="data-row"><span class="data-label">Taille / Poids</span> <span class="data-val">179cm / 68kg</span></div>
+                <div class="data-row"><span class="data-label">Groupe sanguin</span> <span class="data-val">A</span></div>
+            </div>
+
+            <div class="data-block">
+                <div class="data-row"><span class="data-label">Aime</span> <span class="data-val">Voyager, observer, thé</span></div>
+                <div class="data-row"><span class="data-label">N'aime pas</span> <span class="data-val">Questions insistantes, mise en accusation</span></div>
+            </div>
+
+            <div class="bullet-box">
+                <h4>Lecture rapide</h4>
+                <ul>
+                    <li><strong>Charme tranquille</strong> : voix posée, humour léger, présence apaisante.</li>
+                    <li><strong>Autocontrôle</strong> : maîtrise émotionnelle, réponses mesurées.</li>
+                    <li><strong>Évitement élégant</strong> : détourne les sujets sensibles sans mentir frontalement.</li>
+                    <li><strong>Instinct protecteur</strong> : se place entre le groupe et le danger, sans héroïsme affiché.</li>
+                </ul>
+            </div>
+
+            <div class="relations-box">
+                <h4>RELATIONS CLÉS (AVANT)</h4>
+                <div class="relation-item">
+                    <strong>Fratrie Amami</strong><br />
+                    <span class="relation-role">“Grand frère” — responsabilités précoces</span>
+                </div>
+                <div class="relation-item">
+                    <strong>Réseau de contacts</strong><br />
+                    <span class="relation-role">Liens multiples — informations fragmentées</span>
+                </div>
+                <div class="relation-item">
+                    <strong>Autorités / institutions</strong><br />
+                    <span class="relation-role">Relation prudente — coopération minimale</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN -->
+        <div class="main-info">
+            <div class="title-banner">Résumé — “Le garçon qui sait trop et dit peu”</div>
+            <p>
+                Rantaro Amami donne une impression immédiate de stabilité : calme, poli, presque nonchalant.
+                Il parle comme quelqu’un qui a déjà vu beaucoup, et qui a appris qu’élever la voix ne sert pas toujours.
+                Avant même qu’on le connaisse, il impose une frontière : <span class="highlight">tu peux t’approcher, mais pas trop</span>.
+            </p>
+            <p>
+                Son aura n’est pas celle d’un leader classique. C’est plutôt celle d’un observateur compétent :
+                il écoute, relie les informations, et choisit le moment où il intervient.
+            </p>
+
+            <div class="title-banner">Profil psychologique (pré-incident)</div>
+            <p>
+                Rantaro présente une maturité inhabituelle : gestion émotionnelle stable, capacité à rester cordial sous provocation,
+                et un sens de la mesure qui fait contraste avec des personnalités plus explosives.
+                Il semble à l’aise avec l’incertitude, ce qui peut indiquer de l’expérience — ou une habituation au danger.
+            </p>
+            <p>
+                Sa fragilité principale est la <span class="highlight">réticence</span>.
+                Il protège ses informations comme on protège une arme : parce qu’elles peuvent sauver… ou déclencher une catastrophe.
+                Il peut donc paraître distant, voire manipulateur, même quand son intention est protectrice.
+            </p>
+            <div class="quote-box">
+                “Il a l’air relax, mais ce n’est pas de la paresse : c’est du contrôle.”
+                <span class="src">— Note (évaluation comportementale)</span>
+            </div>
+
+            <div class="title-banner">Talent : Ultime ??? (zone d’ombre)</div>
+            <p>
+                Le dossier officiel mentionne un talent non divulgué. En termes de narration, c’est une mine d’or :
+                cela crée un personnage dont l’identité ne peut pas être résumée par une étiquette.
+                Le “???” devient un élément de tension sociale : les autres projettent, soupçonnent, fantasment.
+            </p>
+            <p class="muted">
+                Rantaro sait faire quelque chose qui met le groupe en sécurité… au prix de sa confiance.
+            </p>
+
+            <div class="title-banner">Contexte : responsabilités & disparition (suggestions)</div>
+            <p>
+                Rantaro fonctionne très bien si on lui donne un passé où il a dû “chercher” :
+                une personne disparue, une fratrie à protéger, un voyage motivé par une promesse.
+                Cela justifie son côté organisé, son réseau, ses silences.
+            </p>
+            <p>
+                Sans tout révéler, on peut semer des indices : billets d’avion, noms de villes, photos floues,
+                messages effacés. Le lecteur comprend qu’il y a une histoire… sans avoir la clé.
+            </p>
+
+            <div class="title-banner">Chronologie (avant V3)</div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">Enfance : “grand frère”</span>
+                Très tôt, Rantaro apprend à s’occuper des autres, à calmer, à négocier.
+                Il développe un sens du compromis : faire ce qui marche, pas ce qui “fait joli”.
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">Adolescence : mobilité et réseau</span>
+                Voyages fréquents, changement de repères, capacité à s’adapter vite.
+                Il apprend à lire les gens, à se présenter différemment selon le contexte,
+                et à garder le contrôle sur son histoire personnelle.
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">Incident pivot (suggestions)</span>
+                Un événement fondateur explique son secret :
+                <br /><strong>A)</strong> une disparition (ou fugue) dans sa fratrie, qui le pousse à enquêter ;
+                <br /><strong>B)</strong> une erreur de confiance (il parle trop, et cela coûte cher) ;
+                <br /><strong>C)</strong> un “jeu” ou défi qui le marque, et lui apprend à survivre en observant.
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">Sélection “Ultime” : recrutement prudent</span>
+                Son admission est traitée avec un protocole inhabituel (dossier partiellement scellé).
+                Rantaro accepte, mais sans euphorie : il pense en termes de risques et d’informations.
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">Pré-incident : calme avant la fracture</span>
+                Il observe le groupe, jauge les alliances possibles, et prépare des options de repli.
+                Son dilemme : révéler ce qu’il sait pour protéger… ou se taire pour éviter de déclencher la panique.
+            </div>
+
+            <div class="title-banner">Angles de réécriture (pour l’exploiter au maximum)</div>
+            <p>
+                <strong>1) Secret “utile”</strong> : il cache quelque chose qui pourrait sauver le groupe… mais l’exposerait.<br />
+                <strong>2) Charme comme outil</strong> : il désamorce les tensions par le ton, pas par l’autorité.<br />
+                <strong>3) Arc</strong> : apprendre à faire confiance (ou accepter de perdre le contrôle).<br />
+                <strong>4) Thème central</strong> : information = pouvoir ; silence = protection ; vérité = risque.
+            </p>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer-quote">
+        “Désolé… je peux pas tout dire. Pas parce que je veux pas. Parce que ça changerait tout.”
+        <span>- RANTARO AMAMI</span>
+    </div>
+</div>
+</body>
+</html>

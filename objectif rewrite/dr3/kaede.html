@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dossier Complet : Kaede Akamatsu (Pré-V3)</title>
+    <style>
+        /* --- STYLE GÉNÉRAL --- */
+        :root{
+            --dr-piano: #d12a3a;    /* Rouge “scène / passion” */
+            --dr-black: #1a1a1a;
+            --dr-paper: #fdfdfd;
+            --dr-text: #333;
+            --dr-muted: #666;
+            --dr-ivory: #f3efe6;    /* Ivoire “touche de piano” */
+        }
+
+        body{
+            background-color:#222;
+            font-family:'Courier New', Courier, monospace;
+            margin:0;
+            padding:40px;
+            display:flex;
+            justify-content:center;
+            background-image:
+                    linear-gradient(0deg, transparent 24%, rgba(255,255,255,.05) 25%, rgba(255,255,255,.05) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.05) 75%, rgba(255,255,255,.05) 76%, transparent 77%, transparent),
+                    linear-gradient(90deg, transparent 24%, rgba(255,255,255,.05) 25%, rgba(255,255,255,.05) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.05) 75%, rgba(255,255,255,.05) 76%, transparent 77%, transparent);
+            background-size:50px 50px;
+        }
+
+        /* --- CONTENEUR PRINCIPAL --- */
+        .file-container{
+            background-color:var(--dr-paper);
+            width:900px;
+            max-width:100%;
+            box-shadow:0 0 20px rgba(0,0,0,0.5);
+            border:2px solid var(--dr-black);
+            position:relative;
+        }
+
+        /* --- HEADER --- */
+        .header{
+            background-color:var(--dr-black);
+            color:#fff;
+            padding:25px;
+            border-bottom:6px solid var(--dr-piano);
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap:18px;
+        }
+
+        .header-text h1{
+            margin:0;
+            font-family:Impact, sans-serif;
+            font-size:2.6rem;
+            letter-spacing:2px;
+            text-transform:uppercase;
+        }
+
+        .header-text .sub{
+            color:var(--dr-piano);
+            font-weight:bold;
+            letter-spacing:3px;
+            margin-top:6px;
+            font-size:0.9rem;
+        }
+
+        .header-text .stamp{
+            display:inline-block;
+            margin-top:10px;
+            padding:4px 10px;
+            border:2px dashed rgba(255,255,255,0.5);
+            color:rgba(255,255,255,0.85);
+            font-size:0.75rem;
+            transform:rotate(-1deg);
+        }
+
+        .logo-box{
+            border:2px solid var(--dr-piano);
+            padding:5px 10px;
+            font-weight:bold;
+            font-size:0.8rem;
+            text-align:center;
+            transform:rotate(4deg);
+            min-width:150px;
+        }
+
+        /* --- LAYOUT --- */
+        .content-grid{
+            display:grid;
+            grid-template-columns:300px 1fr;
+            gap:0;
+        }
+
+        /* --- SIDEBAR --- */
+        .sidebar{
+            background-color:#f4f4f4;
+            padding:20px;
+            border-right:2px solid var(--dr-black);
+            display:flex;
+            flex-direction:column;
+            gap:18px;
+        }
+
+        .mugshot{
+            width:100%;
+            height:auto;
+            border:4px solid var(--dr-black);
+            background:#fff;
+            filter:contrast(1.05);
+        }
+
+        .data-block{
+            border-top:2px solid var(--dr-black);
+            padding-top:10px;
+        }
+
+        .data-row{
+            display:flex;
+            justify-content:space-between;
+            font-size:0.85rem;
+            margin-bottom:6px;
+            border-bottom:1px dotted #ccc;
+            gap:12px;
+        }
+        .data-label{ font-weight:bold; color:var(--dr-black); }
+        .data-val{ color:#555; text-align:right; }
+
+        .tagline{
+            background:#fff;
+            border:2px solid var(--dr-black);
+            padding:10px;
+            font-size:0.82rem;
+            color:var(--dr-text);
+        }
+        .tagline strong{ color:var(--dr-piano); }
+
+        .bullet-box{
+            background:#fff;
+            border:2px solid var(--dr-black);
+            padding:10px;
+            font-size:0.82rem;
+            color:var(--dr-text);
+        }
+        .bullet-box h4{
+            margin:0 0 8px 0;
+            font-family:Impact, sans-serif;
+            letter-spacing:1px;
+            text-transform:uppercase;
+            font-size:1rem;
+        }
+        .bullet-box ul{ margin:0; padding-left:18px; }
+        .bullet-box li{ margin:6px 0; }
+
+        .relations-box{
+            background:var(--dr-black);
+            color:#fff;
+            padding:10px;
+            font-size:0.8rem;
+        }
+        .relations-box h4{
+            margin:0 0 6px 0;
+            color:var(--dr-piano);
+            border-bottom:1px solid rgba(255,255,255,0.7);
+            padding-bottom:4px;
+        }
+        .relation-item{ margin-bottom:8px; }
+        .relation-role{ color:#aaa; font-size:0.7rem; }
+
+        .notice{
+            background:rgba(209, 42, 58, 0.10);
+            border-left:4px solid var(--dr-piano);
+            padding:10px;
+            font-size:0.82rem;
+            color:#4a1218;
+        }
+
+        /* --- MAIN --- */
+        .main-info{ padding:30px; }
+
+        .title-banner{
+            background:linear-gradient(90deg, var(--dr-piano) 0%, transparent 90%);
+            color:#fff;
+            padding:8px 15px;
+            font-family:Impact, sans-serif;
+            font-size:1.25rem;
+            margin-bottom:15px;
+            margin-top:25px;
+            text-transform:uppercase;
+            letter-spacing:1px;
+        }
+        .title-banner:first-child{ margin-top:0; }
+
+        p{
+            line-height:1.65;
+            font-size:0.95rem;
+            text-align:justify;
+            margin-bottom:14px;
+            color:var(--dr-text);
+        }
+
+        .highlight{
+            background-color:rgba(209, 42, 58, 0.18);
+            padding:0 4px;
+            font-weight:bold;
+        }
+
+        .muted{ color:var(--dr-muted); }
+
+        .quote-box{
+            border:2px solid var(--dr-black);
+            padding:12px 14px;
+            background:#fff;
+            margin:14px 0;
+            font-style:italic;
+            color:#222;
+        }
+        .quote-box .src{
+            display:block;
+            margin-top:8px;
+            font-style:normal;
+            font-size:0.85rem;
+            color:var(--dr-muted);
+            text-align:right;
+        }
+
+        /* --- TIMELINE --- */
+        .timeline-item{
+            border-left:3px solid var(--dr-piano);
+            padding-left:15px;
+            margin-bottom:18px;
+            position:relative;
+        }
+        .timeline-item::before{
+            content:'';
+            position:absolute;
+            left:-8px;
+            top:2px;
+            width:13px;
+            height:13px;
+            background:var(--dr-piano);
+            border-radius:50%;
+        }
+        .timeline-title{
+            font-weight:bold;
+            color:var(--dr-black);
+            text-transform:uppercase;
+            font-size:0.9rem;
+            margin-bottom:6px;
+            display:block;
+        }
+
+        /* --- FOOTER --- */
+        .footer-quote{
+            grid-column:1 / -1;
+            background-color:var(--dr-black);
+            color:#fff;
+            padding:30px;
+            text-align:center;
+            font-style:italic;
+            border-top:6px solid var(--dr-piano);
+        }
+        .footer-quote span{
+            font-size:1.2rem;
+            color:var(--dr-piano);
+            display:block;
+            margin-top:10px;
+            font-family:Impact, sans-serif;
+            font-style:normal;
+            letter-spacing:1px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width:768px){
+            body{ padding:16px; }
+            .content-grid{ grid-template-columns:1fr; }
+            .sidebar{ border-right:none; border-bottom:2px solid var(--dr-black); }
+            .header{ flex-direction:column; align-items:flex-start; }
+            .logo-box{ transform:none; }
+        }
+    </style>
+</head>
+<body>
+<div class="file-container">
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-text">
+            <h1>Kaede Akamatsu</h1>
+            <div class="sub">DOSSIER ÉTUDIANT // “ULTIME” (PRÉ-INSCRIPTION)</div>
+            <div class="stamp">ARCHIVE : AVANT INCIDENT “KILLING GAME”</div>
+        </div>
+        <div class="logo-box">
+            HOPE'S PEAK<br />DATABASE<br />VER. 2.0
+        </div>
+    </div>
+
+    <div class="content-grid">
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <img
+                    src="https://static.wikia.nocookie.net/danganronpa/images/0/0d/Danganronpa_V3_Kaede_Akamatsu_Fullbody_Sprite_%281%29.png"
+                    alt="Kaede Akamatsu"
+                    class="mugshot"
+            />
+
+            <div class="tagline">
+                Angle presse : <strong>CHARISME LUMINEUX</strong> + <strong>PERFECTIONNISME</strong> + <strong>LEADER PAR L’ESPOIR</strong>
+            </div>
+
+            <div class="data-block">
+                <div class="data-row"><span class="data-label">Statut</span> <span class="data-val">Candidature acceptée</span></div>
+                <div class="data-row"><span class="data-label">Talent (dossier)</span> <span class="data-val">Ultime Pianiste</span></div>
+                <div class="data-row"><span class="data-label">Anniversaire</span> <span class="data-val">26 Mars</span></div>
+                <div class="data-row"><span class="data-label">Taille / Poids</span> <span class="data-val">162cm / 44kg</span></div>
+                <div class="data-row"><span class="data-label">Groupe sanguin</span> <span class="data-val">A</span></div>
+            </div>
+
+            <div class="data-block">
+                <div class="data-row"><span class="data-label">Aime</span> <span class="data-val">Piano, harmonie, “faire ensemble”</span></div>
+                <div class="data-row"><span class="data-label">N'aime pas</span> <span class="data-val">Injustice, cynisme, abandon</span></div>
+            </div>
+
+            <div class="bullet-box">
+                <h4>Lecture rapide</h4>
+                <ul>
+                    <li><strong>Optimisme actif</strong> : transforme la peur en plan d’action.</li>
+                    <li><strong>Empathie sociale</strong> : repère qui décroche, qui se tait, qui souffre.</li>
+                    <li><strong>Exigence envers soi</strong> : peur de décevoir, besoin de “bien faire”.</li>
+                    <li><strong>Décision rapide</strong> : prend des initiatives quand le groupe hésite.</li>
+                </ul>
+            </div>
+
+            <div class="relations-box">
+                <h4>RELATIONS CLÉS (AVANT)</h4>
+                <div class="relation-item">
+                    <strong>Famille Akamatsu</strong><br />
+                    <span class="relation-role">Soutien + attentes artistiques (pression douce)</span>
+                </div>
+                <div class="relation-item">
+                    <strong>Professeurs / jury</strong><br />
+                    <span class="relation-role">Évaluations constantes — excellence attendue</span>
+                </div>
+                <div class="relation-item">
+                    <strong>Public / scène</strong><br />
+                    <span class="relation-role">Apprend à “tenir” malgré le trac</span>
+                </div>
+            </div>
+
+            <div class="notice">
+                <strong>Note rewrite :</strong> Kaede marche très bien si sa lumière n’efface pas ses ombres :
+                elle veut sauver tout le monde, mais cela peut la pousser à franchir des limites.
+            </div>
+        </div>
+
+        <!-- MAIN -->
+        <div class="main-info">
+            <div class="title-banner">Résumé — “L’espoir en rythme majeur”</div>
+            <p>
+                Kaede Akamatsu est perçue comme une présence rassurante : sourire facile, paroles encourageantes,
+                initiative naturelle. Elle sait créer de la cohésion, et elle déteste voir un groupe se fragmenter.
+                Avant tout, Kaede croit que l’effort collectif peut transformer une situation mauvaise en une situation vivable.
+            </p>
+            <p>
+                Mais ce n’est pas une naïveté passive. Kaede est une optimiste qui travaille :
+                elle écoute, analyse, puis agit. Sa gentillesse n’est pas un “décor” — c’est une stratégie,
+                un choix moral, et parfois une façon de se protéger du désespoir.
+            </p>
+
+            <div class="title-banner">Profil psychologique (pré-incident)</div>
+            <p>
+                Kaede présente un tempérament pro-social : elle encourage, valorise, et cherche des points communs.
+                Elle a aussi un <span class="highlight">perfectionnisme</span> discret : elle veut être à la hauteur de ce qu’elle promet.
+                Elle se met facilement en première ligne, ce qui la rend admirable… et vulnérable.
+            </p>
+            <div class="quote-box">
+                “Elle fait tenir les gens ensemble comme on tient un tempo : si elle lâche, tout s’écroule.”
+                <span class="src">— Note (encadrement artistique)</span>
+            </div>
+
+            <div class="title-banner">Analyse du talent : Ultime Pianiste</div>
+            <p>
+                Le dossier d’“Ultime Pianiste” parle d’excellence technique, mais aussi de lecture émotionnelle :
+                Kaede interprète, pas seulement exécute. Elle comprend la dynamique d’un morceau comme une dynamique de groupe :
+                tensions, respirations, relances, silences.
+            </p>
+
+            <div class="title-banner">Valeurs : justice, lien, responsabilité</div>
+            <p>
+                Kaede a une aversion forte pour l’injustice. Elle réagit vite lorsqu’elle estime qu’une personne est traitée unfair,
+                isolée ou ridiculisée. Elle cherche à réparer, à recoller, à réconcilier.
+                Son défaut : elle peut vouloir réparer trop vite, sans laisser à l’autre le temps de respirer.
+            </p>
+            <p>
+                Elle croit aussi à la responsabilité : si quelque chose va mal, elle pense qu’on peut faire “plus”
+                (plus d’effort, plus de dialogue, plus d’organisation). Cette mentalité la pousse parfois à porter un poids
+                qui devrait être partagé.
+            </p>
+
+            <div class="title-banner">Chronologie (avant V3)</div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">Enfance : découverte du piano</span>
+                Le piano devient un langage. Elle y apprend la patience, la rigueur, et le rapport à l’échec :
+                recommencer jusqu’à réussir — mais sans haïr l’erreur.
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">Adolescence : scène, concours, trac</span>
+                Kaede développe une présence publique : auditions, concours, performances.
+                Elle comprend que l’on peut sembler sûre de soi tout en ayant peur.
+                Elle apprend à “jouer malgré” — compétence clé dans un contexte de crise.
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">Incident pivot (suggestions)</span>
+                Un événement fondateur renforce son besoin de “sauver” :
+                <br /><strong>A)</strong> une amie qui abandonne après un échec, et Kaede se jure de ne jamais laisser quelqu’un tomber seul ;
+                <br /><strong>B)</strong> un concours truqué / injustice, qui déclenche son obsession de l’équité ;
+                <br /><strong>C)</strong> une performance où elle se trompe, mais où le public l’applaudit quand même — elle comprend que la perfection n’est pas l’unique voie.
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">Sélection “Ultime” : reconnaissance officielle</span>
+                Son talent est reconnu au plus haut niveau. Elle reçoit une étiquette prestigieuse,
+                et avec elle une attente : être brillante, inspirante, irréprochable.
+                Kaede l’accepte avec un sourire… mais en privé, elle intensifie sa discipline.
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">Pré-incident : la promesse</span>
+                Avant l’événement qui basculera tout, Kaede se fait une promesse :
+                si une situation devient dangereuse, elle sera celle qui rassemble, qui décide, qui empêche la panique.
+                Dans le rewrite, cette promesse est un excellent levier dramatique : que devient-elle si décider implique une faute ?
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer-quote">
+        “On peut avoir peur… et avancer quand même. Si on avance ensemble, c’est déjà une victoire.”
+        <span>- KAEDE AKAMATSU</span>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dossier Complet : Tsumugi Shirogane (Pré-V3)</title>
+  <style>
+    /* --- STYLE GÉNÉRAL --- */
+    :root{
+      --dr-lavender:#8b8fe6;   /* Lavande “coton / discret” */
+      --dr-black:#1a1a1a;
+      --dr-paper:#fdfdfd;
+      --dr-text:#333;
+      --dr-muted:#666;
+      --dr-ink:#2b2b2b;
+    }
+
+    body{
+      background-color:#222;
+      font-family:'Courier New', Courier, monospace;
+      margin:0;
+      padding:40px;
+      display:flex;
+      justify-content:center;
+      background-image:
+              linear-gradient(0deg, transparent 24%, rgba(255,255,255,.05) 25%, rgba(255,255,255,.05) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.05) 75%, rgba(255,255,255,.05) 76%, transparent 77%, transparent),
+              linear-gradient(90deg, transparent 24%, rgba(255,255,255,.05) 25%, rgba(255,255,255,.05) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.05) 75%, rgba(255,255,255,.05) 76%, transparent 77%, transparent);
+      background-size:50px 50px;
+    }
+
+    /* --- CONTENEUR PRINCIPAL --- */
+    .file-container{
+      background-color:var(--dr-paper);
+      width:900px;
+      max-width:100%;
+      box-shadow:0 0 20px rgba(0,0,0,0.5);
+      border:2px solid var(--dr-black);
+      position:relative;
+    }
+
+    /* --- HEADER --- */
+    .header{
+      background-color:var(--dr-black);
+      color:#fff;
+      padding:25px;
+      border-bottom:6px solid var(--dr-lavender);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:18px;
+    }
+
+    .header-text h1{
+      margin:0;
+      font-family:Impact, sans-serif;
+      font-size:2.6rem;
+      letter-spacing:2px;
+      text-transform:uppercase;
+    }
+
+    .header-text .sub{
+      color:var(--dr-lavender);
+      font-weight:bold;
+      letter-spacing:3px;
+      margin-top:6px;
+      font-size:0.9rem;
+    }
+
+    .header-text .stamp{
+      display:inline-block;
+      margin-top:10px;
+      padding:4px 10px;
+      border:2px dashed rgba(255,255,255,0.5);
+      color:rgba(255,255,255,0.85);
+      font-size:0.75rem;
+      transform:rotate(-1deg);
+    }
+
+    .logo-box{
+      border:2px solid var(--dr-lavender);
+      padding:5px 10px;
+      font-weight:bold;
+      font-size:0.8rem;
+      text-align:center;
+      transform:rotate(4deg);
+      min-width:150px;
+    }
+
+    /* --- LAYOUT --- */
+    .content-grid{
+      display:grid;
+      grid-template-columns:300px 1fr;
+      gap:0;
+    }
+
+    /* --- SIDEBAR --- */
+    .sidebar{
+      background-color:#f4f4f4;
+      padding:20px;
+      border-right:2px solid var(--dr-black);
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    .mugshot{
+      width:100%;
+      height:auto;
+      border:4px solid var(--dr-black);
+      background:#fff;
+      filter:contrast(1.05);
+    }
+
+    .data-block{
+      border-top:2px solid var(--dr-black);
+      padding-top:10px;
+    }
+
+    .data-row{
+      display:flex;
+      justify-content:space-between;
+      font-size:0.85rem;
+      margin-bottom:6px;
+      border-bottom:1px dotted #ccc;
+      gap:12px;
+    }
+    .data-label{ font-weight:bold; color:var(--dr-black); }
+    .data-val{ color:#555; text-align:right; }
+
+    .tagline{
+      background:#fff;
+      border:2px solid var(--dr-black);
+      padding:10px;
+      font-size:0.82rem;
+      color:var(--dr-text);
+    }
+    .tagline strong{ color:var(--dr-lavender); }
+
+    .bullet-box{
+      background:#fff;
+      border:2px solid var(--dr-black);
+      padding:10px;
+      font-size:0.82rem;
+      color:var(--dr-text);
+    }
+    .bullet-box h4{
+      margin:0 0 8px 0;
+      font-family:Impact, sans-serif;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      font-size:1rem;
+    }
+    .bullet-box ul{ margin:0; padding-left:18px; }
+    .bullet-box li{ margin:6px 0; }
+
+    .relations-box{
+      background:var(--dr-black);
+      color:#fff;
+      padding:10px;
+      font-size:0.8rem;
+    }
+    .relations-box h4{
+      margin:0 0 6px 0;
+      color:var(--dr-lavender);
+      border-bottom:1px solid rgba(255,255,255,0.7);
+      padding-bottom:4px;
+    }
+    .relation-item{ margin-bottom:8px; }
+    .relation-role{ color:#aaa; font-size:0.7rem; }
+
+    .notice{
+      background:rgba(139, 143, 230, 0.10);
+      border-left:4px solid var(--dr-lavender);
+      padding:10px;
+      font-size:0.82rem;
+      color:#2a2c58;
+    }
+    .notice strong{ color:var(--dr-lavender); }
+
+    /* --- MAIN --- */
+    .main-info{ padding:30px; }
+
+    .title-banner{
+      background:linear-gradient(90deg, var(--dr-lavender) 0%, transparent 90%);
+      color:#fff;
+      padding:8px 15px;
+      font-family:Impact, sans-serif;
+      font-size:1.25rem;
+      margin-bottom:15px;
+      margin-top:25px;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+    .title-banner:first-child{ margin-top:0; }
+
+    p{
+      line-height:1.65;
+      font-size:0.95rem;
+      text-align:justify;
+      margin-bottom:14px;
+      color:var(--dr-text);
+    }
+
+    .highlight{
+      background-color:rgba(139, 143, 230, 0.18);
+      padding:0 4px;
+      font-weight:bold;
+    }
+
+    .muted{ color:var(--dr-muted); }
+
+    .quote-box{
+      border:2px solid var(--dr-black);
+      padding:12px 14px;
+      background:#fff;
+      margin:14px 0;
+      font-style:italic;
+      color:#222;
+    }
+    .quote-box .src{
+      display:block;
+      margin-top:8px;
+      font-style:normal;
+      font-size:0.85rem;
+      color:var(--dr-muted);
+      text-align:right;
+    }
+
+    /* --- TIMELINE --- */
+    .timeline-item{
+      border-left:3px solid var(--dr-lavender);
+      padding-left:15px;
+      margin-bottom:18px;
+      position:relative;
+    }
+    .timeline-item::before{
+      content:'';
+      position:absolute;
+      left:-8px;
+      top:2px;
+      width:13px;
+      height:13px;
+      background:var(--dr-lavender);
+      border-radius:50%;
+    }
+    .timeline-title{
+      font-weight:bold;
+      color:var(--dr-black);
+      text-transform:uppercase;
+      font-size:0.9rem;
+      margin-bottom:6px;
+      display:block;
+    }
+
+    /* --- FOOTER --- */
+    .footer-quote{
+      grid-column:1 / -1;
+      background-color:var(--dr-black);
+      color:#fff;
+      padding:30px;
+      text-align:center;
+      font-style:italic;
+      border-top:6px solid var(--dr-lavender);
+    }
+    .footer-quote span{
+      font-size:1.2rem;
+      color:var(--dr-lavender);
+      display:block;
+      margin-top:10px;
+      font-family:Impact, sans-serif;
+      font-style:normal;
+      letter-spacing:1px;
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width:768px){
+      body{ padding:16px; }
+      .content-grid{ grid-template-columns:1fr; }
+      .sidebar{ border-right:none; border-bottom:2px solid var(--dr-black); }
+      .header{ flex-direction:column; align-items:flex-start; }
+      .logo-box{ transform:none; }
+    }
+  </style>
+</head>
+<body>
+<div class="file-container">
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-text">
+      <h1>Tsumugi Shirogane</h1>
+      <div class="sub">DOSSIER ÉTUDIANT // “ULTIME” (PRÉ-INSCRIPTION)</div>
+      <div class="stamp">ARCHIVE : AVANT INCIDENT “KILLING GAME”</div>
+    </div>
+    <div class="logo-box">
+      HOPE'S PEAK<br />DATABASE<br />VER. 2.0
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <img
+              src="https://static.wikia.nocookie.net/danganronpa/images/6/63/Danganronpa_V3_Tsumugi_Shirogane_Fullbody_Sprite_%281%29.png"
+              alt="Tsumugi Shirogane"
+              class="mugshot"
+      />
+
+      <div class="tagline">
+        Angle presse : <strong>DISCRÈTE</strong> + <strong>PASSION “OTAKU”</strong> + <strong>PERFECTION DES DÉTAILS</strong>
+      </div>
+
+      <div class="data-block">
+        <div class="data-row"><span class="data-label">Statut</span> <span class="data-val">Candidature acceptée</span></div>
+        <div class="data-row"><span class="data-label">Talent (dossier)</span> <span class="data-val">Ultime Cosplayeuse</span></div>
+        <div class="data-row"><span class="data-label">Anniversaire</span> <span class="data-val">15 Août</span></div>
+        <div class="data-row"><span class="data-label">Taille / Poids</span> <span class="data-val">160cm / 52kg</span></div>
+        <div class="data-row"><span class="data-label">Groupe sanguin</span> <span class="data-val">O</span></div>
+      </div>
+
+      <div class="data-block">
+        <div class="data-row"><span class="data-label">Aime</span> <span class="data-val">Couture, conventions, références</span></div>
+        <div class="data-row"><span class="data-label">N'aime pas</span> <span class="data-val">Mépris, élitisme, “poser” sans connaître</span></div>
+      </div>
+
+      <div class="bullet-box">
+        <h4>Lecture rapide</h4>
+        <ul>
+          <li><strong>Effacement social</strong> : se fond dans le décor pour observer.</li>
+          <li><strong>Hyper-compétence manuelle</strong> : couture, accessoires, maquillage, finitions.</li>
+          <li><strong>Culture pop encyclopédique</strong> : références, univers, tropes.</li>
+          <li><strong>Contrôle par le rôle</strong> : plus à l’aise “en personnage” qu’en elle-même.</li>
+        </ul>
+      </div>
+
+      <div class="relations-box">
+        <h4>RELATIONS CLÉS (AVANT)</h4>
+        <div class="relation-item">
+          <strong>Communautés cosplay</strong><br />
+          <span class="relation-role">Validation par le craft — reconnaissance technique</span>
+        </div>
+        <div class="relation-item">
+          <strong>Ateliers / fournisseurs</strong><br />
+          <span class="relation-role">Réseau discret — matériaux, commandes, conseils</span>
+        </div>
+        <div class="relation-item">
+          <strong>Camarades “normies”</strong><br />
+          <span class="relation-role">Distance polie — peur du jugement</span>
+        </div>
+      </div>
+
+      <div class="notice">
+        <strong>Note rewrite :</strong> Je compte la traiter comme quelqu’un qui aime
+        les histoires parce qu’elles sont <em>prévisibles</em>, quand la vraie vie ne l’est pas.
+      </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main-info">
+      <div class="title-banner">Résumé — “Se cacher dans les costumes”</div>
+      <p>
+        Tsumugi Shirogane est le genre d’élève qu’on remarque peu… jusqu’au moment où l’on voit son travail.
+        Elle peut être timide, maladroite, presque transparente en groupe, mais ses créations racontent autre chose :
+        maîtrise, patience, et obsession du détail. Chez elle, le cosplay n’est pas un hobby “mignon” :
+        c’est une façon de construire une identité quand on n’est pas sûre de la sienne.
+      </p>
+      <p>
+        Avant l’incident, sa réputation est surtout communautaire : connue “dans le milieu”,
+        plus que dans le lycée. Elle préfère la reconnaissance des pairs (craft, finitions, fidélité)
+        au jugement général, qu’elle anticipe comme moqueur ou condescendant.
+      </p>
+
+      <div class="title-banner">Profil psychologique (pré-incident)</div>
+      <p>
+        Tsumugi est une observatrice. Elle analyse les codes sociaux comme elle analyse un personnage :
+        posture, ton, vocabulaire, indices. Là où d’autres improvisent, elle “compose”.
+        Cela la rend prudente, parfois lente à s’ouvrir, mais rarement naïve.
+      </p>
+      <p>
+        Son point de fragilité est un mélange de <span class="highlight">peur d’être jugée</span> et de <span class="highlight">besoin de contrôle</span>.
+        Le costume est un cadre : il protège, il autorise, il donne un script. Sans script, elle peut se sentir nue.
+      </p>
+      <div class="quote-box">
+        “Quand elle parle de couture, elle s’anime. Quand elle parle d’elle-même, elle s’éteint.”
+        <span class="src">— Note (club / encadrement)</span>
+      </div>
+
+      <div class="title-banner">Analyse du talent : Ultime Cosplayeuse</div>
+      <p>
+        Le dossier “Ultime” insiste sur la polyvalence : conception, patronage, couture, armures, accessoires,
+        maquillage, coiffure, et capacité à recréer une silhouette crédible, pas juste une tenue.
+        Tsumugi comprend la logique d’un design : pourquoi un personnage “tient” visuellement.
+      </p>
+
+      <div class="title-banner">Thèmes naturels : identité, rôle social, “canon”</div>
+      <p>
+        Tsumugi vit dans les codes : tropes, références, “canon”, fanon, fidélité.
+        Elle peut être très exigeante sur la précision, parce que la précision est une forme de sécurité :
+        si c’est correct, on ne peut pas la critiquer “pour de vrai”.
+      </p>
+      <p>
+        Cela peut aussi la rendre mordante : elle supporte mal le mépris des passions,
+        et peut attaquer en sarcasme quand elle se sent humiliée.
+      </p>
+
+      <div class="title-banner">Chronologie (avant V3)</div>
+
+      <div class="timeline-item">
+        <span class="timeline-title">Découverte : “devenir quelqu’un d’autre”</span>
+        Elle découvre le cosplay comme une libération : pour une fois, ce n’est pas “Tsumugi” qu’on regarde,
+        c’est le personnage. Le regard des autres devient supportable parce qu’il vise un rôle.
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-title">Montée en compétence : craft et discipline</span>
+        Elle apprend seule, puis via communautés et mentors : patrons, matériaux, techniques.
+        Son perfectionnisme se construit ici : rater, corriger, recommencer.
+        Dans le dossier, c’est ce volume d’heures et de savoir-faire qui justifie l’étiquette “Ultime”.
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-title">Incident pivot (suggestions)</span>
+        Un événement fondateur peut expliquer sa prudence :
+        <br /><strong>A)</strong> un harcèlement / humiliation publique liée à ses passions ;
+        <br /><strong>B)</strong> un costume volé ou plagié (trahison dans la communauté) ;
+        <br /><strong>C)</strong> une convention où elle brille… puis une retombée brutale au lycée (double vie).
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-title">Sélection “Ultime” : validation et mise sous projecteur</span>
+        Hope’s Peak (ou l’institution équivalente) officialise son excellence.
+        Pour Tsumugi, c’est ambivalent : fierté énorme… mais peur que “les normies” se moquent.
+        Elle prépare une posture : discrète, gentille, “pas menaçante”.
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-title">Pré-incident : script social</span>
+        Avant l’événement, Tsumugi s’imagine des scénarios : comment se présenter, quoi dire, comment éviter les piques.
+        Elle gère le social comme une convention : repérer les safe people, éviter les zones hostiles.
+      </div>
+
+      <div class="title-banner">Angles de rewrite (sans spoiler “méta”)</div>
+      <p>
+        <strong>1) Le rôle comme protection</strong> : costume = frontière émotionnelle.<br />
+        <strong>2) Perfectionnisme</strong> : elle cherche le “zéro défaut” pour éviter la critique.<br />
+        <strong>3) Arc possible</strong> : apprendre à être vue sans personnage (ou accepter d’être multiple).<br />
+        <strong>4) Thème central</strong> : identité choisie vs identité assignée ; vérité vs mise en scène.
+      </p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-quote">
+    “En costume, je sais quoi faire… Dans la vraie vie, les règles changent tout le temps.”
+    <span>- TSUMUGI SHIROGANE</span>
+  </div>
+</div>
+</body>
+</html>
