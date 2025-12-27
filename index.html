@@ -265,6 +265,57 @@
             letter-spacing: 1px;
         }
 
+        /* --- NAVIGATION STYLES --- */
+        .nav-section {
+            margin-bottom: 30px;
+        }
+
+        .nav-title {
+            background-color: var(--dr-black);
+            color: white;
+            padding: 10px 15px;
+            font-family: Impact, sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-left: 6px solid var(--dr-green);
+        }
+
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .character-card {
+            background-color: #f4f4f4;
+            border: 2px solid var(--dr-black);
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            color: var(--dr-text);
+        }
+
+        .character-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .character-name {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--dr-black);
+        }
+
+        .character-title {
+            font-size: 0.85rem;
+            color: var(--dr-muted);
+            font-style: italic;
+        }
+
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             body { padding: 16px; }
@@ -272,11 +323,112 @@
             .sidebar { border-right: none; border-bottom: 2px solid var(--dr-black); }
             .header { flex-direction: column; align-items: flex-start; }
             .logo-box { transform: none; }
+            .character-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+        }
+
+        /* --- BOUTON RETOUR --- */
+        .back-button {
+            display: inline-block;
+            background-color: var(--dr-black);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            margin-top: 20px;
+            font-weight: bold;
+            border: 2px solid var(--dr-green);
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: var(--dr-green);
+            color: white;
         }
     </style>
 </head>
 <body>
-<h1>Hello World!</h1>
-<p>This is my first website.</p>
+<div class="file-container">
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-text">
+            <h1>LE CLASSEUR DES FICHES</h1>
+            <div class="sub">BASE DE DONNÉES HOPE'S PEAK</div>
+            <div class="stamp">ARCHIVES CONFIDENTIELLES</div>
+        </div>
+        <div class="logo-box">
+            HOPE'S PEAK<br>DATABASE<br>VER. 2.0
+        </div>
+    </div>
+
+    <div class="main-info">
+        <div class="title-banner">Navigation des dossiers</div>
+        <p>
+            Bienvenue dans la base de données des étudiants de Hope's Peak Academy. Ce système contient les dossiers confidentiels
+            des élèves, classés par promotion. Sélectionnez un dossier ci-dessous pour consulter les informations détaillées.
+        </p>
+
+        <!-- SECTION DR1 -->
+        <div class="nav-section">
+            <div class="nav-title">Classe 78 (DR1)</div>
+            <div class="character-grid">
+                <a href="objectif rewrite/dr1/naegi.html" class="character-card">
+                    <div class="character-name">Makoto Naegi</div>
+                    <div class="character-title">Ultime Chanceux</div>
+                </a>
+                <a href="objectif rewrite/dr1/leon.html" class="character-card">
+                    <div class="character-name">Leon Kuwata</div>
+                    <div class="character-title">Ultime Joueur de Baseball</div>
+                </a>
+                <a href="objectif rewrite/dr1/kiyotaka.html" class="character-card">
+                    <div class="character-name">Kiyotaka Ishimaru</div>
+                    <div class="character-title">Ultime Préfet</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- SECTION DR2 -->
+        <div class="nav-section">
+            <div class="nav-title">Classe 77-B (DR2)</div>
+            <div class="character-grid">
+                <a href="objectif rewrite/dr2/chiaki.html" class="character-card">
+                    <div class="character-name">Chiaki Nanami</div>
+                    <div class="character-title">Ultime Gameuse</div>
+                </a>
+                <a href="objectif rewrite/dr2/fuyuhiko.html" class="character-card">
+                    <div class="character-name">Fuyuhiko Kuzuryu</div>
+                    <div class="character-title">Ultime Yakuza</div>
+                </a>
+                <a href="objectif rewrite/dr2/mahiru.html" class="character-card">
+                    <div class="character-name">Mahiru Koizumi</div>
+                    <div class="character-title">Ultime Photographe</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- SECTION DR3 -->
+        <div class="nav-section">
+            <div class="nav-title">Classe 79 (DRV3)</div>
+            <div class="character-grid">
+                <a href="objectif rewrite/dr3/kaede.html" class="character-card">
+                    <div class="character-name">Kaede Akamatsu</div>
+                    <div class="character-title">Ultime Pianiste</div>
+                </a>
+                <a href="objectif rewrite/dr3/rantaro.html" class="character-card">
+                    <div class="character-name">Rantaro Amami</div>
+                    <div class="character-title">Ultime ???</div>
+                </a>
+                <a href="objectif rewrite/dr3/tsumugi.html" class="character-card">
+                    <div class="character-name">Tsumugi Shirogane</div>
+                    <div class="character-title">Ultime Cosplayeuse</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer-quote">
+        "L'espoir est la lumière qui guide à travers le désespoir."
+        <span>- ARCHIVES HOPE'S PEAK</span>
+    </div>
+</div>
 </body>
 </html>
