@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dossier Complet : Celestia Ludenberg (Pré-DR1)</title>
+    <style>
+        /* --- STYLE GÉNÉRAL --- */
+        :root{
+            --dr-burgundy:#6b1520;  /* Rouge sombre “velours / aristocratie” */
+            --dr-black:#1a1a1a;
+            --dr-paper:#fdfdfd;
+            --dr-text:#333;
+            --dr-muted:#666;
+            --dr-ivory:#efe7d8;     /* Ivoire “dentelle” */
+            --dr-gold:#b08a2e;      /* Or “noblesse / casino” */
+        }
+
+        body{
+            background-color:#222;
+            font-family:'Courier New', Courier, monospace;
+            margin:0;
+            padding:40px;
+            display:flex;
+            justify-content:center;
+            background-image:
+                    linear-gradient(0deg, transparent 24%, rgba(255,255,255,.05) 25%, rgba(255,255,255,.05) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.05) 75%, rgba(255,255,255,.05) 76%, transparent 77%, transparent),
+                    linear-gradient(90deg, transparent 24%, rgba(255,255,255,.05) 25%, rgba(255,255,255,.05) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.05) 75%, rgba(255,255,255,.05) 76%, transparent 77%, transparent);
+            background-size:50px 50px;
+        }
+
+        /* --- CONTENEUR PRINCIPAL --- */
+        .file-container{
+            background-color:var(--dr-paper);
+            width:900px;
+            max-width:100%;
+            box-shadow:0 0 20px rgba(0,0,0,0.5);
+            border:2px solid var(--dr-black);
+            position:relative;
+        }
+
+        /* --- HEADER --- */
+        .header{
+            background-color:var(--dr-black);
+            color:#fff;
+            padding:25px;
+            border-bottom:6px solid var(--dr-burgundy);
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap:18px;
+        }
+
+        .header-text h1{
+            margin:0;
+            font-family:Impact, sans-serif;
+            font-size:2.6rem;
+            letter-spacing:2px;
+            text-transform:uppercase;
+        }
+
+        .header-text .sub{
+            color:var(--dr-burgundy);
+            font-weight:bold;
+            letter-spacing:3px;
+            margin-top:6px;
+            font-size:0.9rem;
+        }
+
+        .header-text .stamp{
+            display:inline-block;
+            margin-top:10px;
+            padding:4px 10px;
+            border:2px dashed rgba(255,255,255,0.5);
+            color:rgba(255,255,255,0.85);
+            font-size:0.75rem;
+            transform:rotate(-1deg);
+        }
+
+        .logo-box{
+            border:2px solid var(--dr-burgundy);
+            padding:5px 10px;
+            font-weight:bold;
+            font-size:0.8rem;
+            text-align:center;
+            transform:rotate(4deg);
+            min-width:150px;
+        }
+
+        /* --- LAYOUT DU CONTENU --- */
+        .content-grid{
+            display:grid;
+            grid-template-columns:300px 1fr;
+            gap:0;
+        }
+
+        /* --- SIDEBAR --- */
+        .sidebar{
+            background-color:#f4f4f4;
+            padding:20px;
+            border-right:2px solid var(--dr-black);
+            display:flex;
+            flex-direction:column;
+            gap:18px;
+        }
+
+        .mugshot{
+            width:100%;
+            height:auto;
+            border:4px solid var(--dr-black);
+            background:#fff;
+            filter:contrast(1.05);
+        }
+
+        .data-block{
+            border-top:2px solid var(--dr-black);
+            padding-top:10px;
+        }
+
+        .data-row{
+            display:flex;
+            justify-content:space-between;
+            font-size:0.85rem;
+            margin-bottom:6px;
+            border-bottom:1px dotted #ccc;
+            gap:12px;
+        }
+        .data-label{ font-weight:bold; color:var(--dr-black); }
+        .data-val{ color:#555; text-align:right; }
+
+        .tagline{
+            background:#fff;
+            border:2px solid var(--dr-black);
+            padding:10px;
+            font-size:0.82rem;
+            color:var(--dr-text);
+        }
+        .tagline strong{ color:var(--dr-burgundy); }
+
+        .bullet-box{
+            background:#fff;
+            border:2px solid var(--dr-black);
+            padding:10px;
+            font-size:0.82rem;
+            color:var(--dr-text);
+        }
+        .bullet-box h4{
+            margin:0 0 8px 0;
+            font-family:Impact, sans-serif;
+            letter-spacing:1px;
+            text-transform:uppercase;
+            font-size:1rem;
+        }
+        .bullet-box ul{ margin:0; padding-left:18px; }
+        .bullet-box li{ margin:6px 0; }
+
+        .relations-box{
+            background:var(--dr-black);
+            color:#fff;
+            padding:10px;
+            font-size:0.8rem;
+        }
+        .relations-box h4{
+            margin:0 0 6px 0;
+            color:var(--dr-burgundy);
+            border-bottom:1px solid rgba(255,255,255,0.7);
+            padding-bottom:4px;
+        }
+        .relation-item{ margin-bottom:8px; }
+        .relation-role{ color:#aaa; font-size:0.7rem; }
+
+        .notice{
+            background:rgba(176, 138, 46, 0.10);
+            border-left:4px solid var(--dr-gold);
+            padding:10px;
+            font-size:0.82rem;
+            color:#3b2c11;
+        }
+        .notice strong{ color:var(--dr-gold); }
+
+        /* --- MAIN --- */
+        .main-info{ padding:30px; }
+
+        .title-banner{
+            background:linear-gradient(90deg, var(--dr-burgundy) 0%, transparent 90%);
+            color:#fff;
+            padding:8px 15px;
+            font-family:Impact, sans-serif;
+            font-size:1.25rem;
+            margin-bottom:15px;
+            margin-top:25px;
+            text-transform:uppercase;
+            letter-spacing:1px;
+        }
+        .title-banner:first-child{ margin-top:0; }
+
+        p{
+            line-height:1.65;
+            font-size:0.95rem;
+            text-align:justify;
+            margin-bottom:14px;
+            color:var(--dr-text);
+        }
+
+        .highlight{
+            background-color:rgba(107, 21, 32, 0.16);
+            padding:0 4px;
+            font-weight:bold;
+        }
+
+        .muted{ color:var(--dr-muted); }
+
+        .quote-box{
+            border:2px solid var(--dr-black);
+            padding:12px 14px;
+            background:#fff;
+            margin:14px 0;
+            font-style:italic;
+            color:#222;
+        }
+        .quote-box .src{
+            display:block;
+            margin-top:8px;
+            font-style:normal;
+            font-size:0.85rem;
+            color:var(--dr-muted);
+            text-align:right;
+        }
+
+        /* --- TIMELINE --- */
+        .timeline-item{
+            border-left:3px solid var(--dr-burgundy);
+            padding-left:15px;
+            margin-bottom:18px;
+            position:relative;
+        }
+        .timeline-item::before{
+            content:'';
+            position:absolute;
+            left:-8px;
+            top:2px;
+            width:13px;
+            height:13px;
+            background:var(--dr-burgundy);
+            border-radius:50%;
+        }
+        .timeline-title{
+            font-weight:bold;
+            color:var(--dr-black);
+            text-transform:uppercase;
+            font-size:0.9rem;
+            margin-bottom:6px;
+            display:block;
+        }
+
+        /* --- FOOTER --- */
+        .footer-quote{
+            grid-column:1 / -1;
+            background-color:var(--dr-black);
+            color:#fff;
+            padding:30px;
+            text-align:center;
+            font-style:italic;
+            border-top:6px solid var(--dr-burgundy);
+        }
+        .footer-quote span{
+            font-size:1.2rem;
+            color:var(--dr-burgundy);
+            display:block;
+            margin-top:10px;
+            font-family:Impact, sans-serif;
+            font-style:normal;
+            letter-spacing:1px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width:768px){
+            body{ padding:16px; }
+            .content-grid{ grid-template-columns:1fr; }
+            .sidebar{ border-right:none; border-bottom:2px solid var(--dr-black); }
+            .header{ flex-direction:column; align-items:flex-start; }
+            .logo-box{ transform:none; }
+        }
+    </style>
+</head>
+<body>
+<div class="file-container">
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-text">
+            <h1>Celestia Ludenberg</h1>
+            <div class="sub">DOSSIER ÉTUDIANT // CLASSE 78e (PRÉ-INSCRIPTION)</div>
+            <div class="stamp">ARCHIVE : AVANT INCIDENT “TRIGGER HAPPY HAVOC”</div>
+        </div>
+        <div class="logo-box">
+            HOPE'S PEAK<br />DATABASE<br />VER. 2.0
+        </div>
+    </div>
+
+    <div class="content-grid">
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <img
+                    src="https://static.wikia.nocookie.net/danganronpa/images/5/59/Celestia_Ludenberg_Trigger_Happy_Havoc_Fullbody_Sprite_02.png"
+                    alt="Celestia Ludenberg"
+                    class="mugshot"
+            />
+
+            <div class="tagline">
+                Angle presse : <strong>ARISTO-ILLUSION</strong> + <strong>CALME TRANCHANT</strong> + <strong>RISQUE CALCULÉ</strong>
+            </div>
+
+            <div class="data-block">
+                <div class="data-row"><span class="data-label">Statut</span> <span class="data-val">Candidature acceptée</span></div>
+                <div class="data-row"><span class="data-label">Talent (dossier)</span> <span class="data-val">Ultime Parieuse</span></div>
+                <div class="data-row"><span class="data-label">Anniversaire</span> <span class="data-val">23 Novembre</span></div>
+                <div class="data-row"><span class="data-label">Taille / Poids</span> <span class="data-val">166cm / 46kg</span></div>
+                <div class="data-row"><span class="data-label">Groupe sanguin</span> <span class="data-val">AB</span></div>
+            </div>
+
+            <div class="data-block">
+                <div class="data-row"><span class="data-label">Aime</span> <span class="data-val">Thé, mise en scène, argent</span></div>
+                <div class="data-row"><span class="data-label">N'aime pas</span> <span class="data-val">Vulgarité, imprévu, “perdre la face”</span></div>
+            </div>
+
+            <div class="bullet-box">
+                <h4>Lecture rapide</h4>
+                <ul>
+                    <li><strong>Masque social</strong> : diction, posture, “noblesse” fabriquée.</li>
+                    <li><strong>Calcul froid</strong> : évalue coûts/bénéfices, jamais au hasard.</li>
+                    <li><strong>Manipulation douce</strong> : influence par charme, logique, culpabilité.</li>
+                    <li><strong>Panique privée</strong> : la peur se voit rarement, mais elle existe.</li>
+                </ul>
+            </div>
+
+            <div class="relations-box">
+                <h4>RELATIONS CLÉS (AVANT CAMPUS)</h4>
+                <div class="relation-item">
+                    <strong>Milieux “jeu” / casinos</strong><br />
+                    <span class="relation-role">Réputation d’invincibilité — fascination, rancunes</span>
+                </div>
+                <div class="relation-item">
+                    <strong>Public / médias</strong><br />
+                    <span class="relation-role">Mythe entretenu — identité comme produit</span>
+                </div>
+                <div class="relation-item">
+                    <strong>Famille / origine</strong><br />
+                    <span class="relation-role">Zone sensible — informations filtrées</span>
+                </div>
+            </div>
+
+            <div class="notice">
+                <strong>Note rewrite :</strong> Céleste est plus intéressante si son “mensonge”
+                n’est pas juste de la vanité : c’est une <em>survie</em> (sociale, économique, symbolique).
+            </div>
+        </div>
+
+        <!-- MAIN -->
+        <div class="main-info">
+            <div class="title-banner">Résumé — “La reine fabriquée”</div>
+            <p>
+                Celestia Ludenberg se présente comme une aristocrate d’un autre temps : langage soigné,
+                geste mesuré, esthétique gothique-lolita parfaitement tenue. Mais cette “noblesse” est un
+                <span class="highlight">rôle</span> — une construction si cohérente qu’elle devient presque indiscutable.
+                Avant Hope’s Peak, Céleste ne cherche pas à être aimée : elle cherche à être respectée… et incontrôlable.
+            </p>
+            <p>
+                Dans la vie quotidienne, elle impose une distance par la politesse. Elle sourit, mais ne se donne pas.
+                Elle traite le monde comme une table de jeu : chaque interaction a une mise, un risque, une sortie.
+                Et elle préfère perdre des gens que perdre la face.
+            </p>
+
+            <div class="title-banner">Profil psychologique (pré-campus)</div>
+            <p>
+                Céleste est une stratège sociale. Elle lit vite les intentions, repère les faiblesses,
+                et construit un espace où elle a l’avantage : rythme, règles, terrain.
+                Son calme n’est pas de la sérénité — c’est une discipline. Elle ne “réagit” pas : elle choisit quand répondre.
+            </p>
+            <p>
+                Sa vulnérabilité principale, en rewrite, est le besoin de contrôle.
+                L’imprévu la met en danger parce qu’il menace son personnage. Lorsqu’elle perd la maîtrise,
+                son arrogance peut se fissurer pour laisser apparaître une peur très humaine :
+                être ramenée à son origine, à son vrai nom, à une vie qu’elle refuse.
+            </p>
+            <div class="quote-box">
+                “Elle est polie comme une lame : agréable au toucher, mais faite pour couper.”
+                <span class="src">— Synthèse (observation / sélection)</span>
+            </div>
+
+            <div class="title-banner">Analyse du talent : Ultime Parieuse</div>
+            <p>
+                L’étiquette “Ultime Parieuse” ne renvoie pas seulement aux jeux d’argent.
+                Elle implique gestion du risque, lecture des micro-expressions, patience, bluff,
+                et capacité à rester cohérente sous pression. Céleste excelle quand les autres paniquent.
+            </p>
+            <p class="muted">
+                En rewrite, son talent peut être utilisé de façon non criminelle : négociation, médiation,
+                stratégie collective, et compréhension des dynamiques de groupe. Elle sait comment gagner sans crier.
+            </p>
+
+            <div class="title-banner">Identité : aristocratie, théâtre, et désir</div>
+            <p>
+                Le “personnage” Celestia Ludenberg est un acte de pouvoir : une identité choisie.
+                Elle refuse le hasard, refuse la banalité, refuse qu’on la définit par la naissance.
+                Son désir (argent, luxe, château — selon l’angle) est moins un caprice qu’une idée fixe :
+                <span class="highlight">la preuve</span> qu’elle a gagné contre le monde.
+            </p>
+            <p>
+                Cela la rend fascinante et dangereuse : quand tout devient symbole, toute concession ressemble à une défaite.
+                En rewrite, on peut la rendre plus tragique en montrant qu’elle confond parfois “confort” et “sécurité”.
+            </p>
+
+            <div class="title-banner">Chronologie (avant Danganronpa 1)</div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">Origine : invention d’un nom</span>
+                Elle se choisit un nom, un accent, un style. Le “mensonge” devient une armure.
+                Elle comprend que la perception est une monnaie : si tu contrôles ton image, tu contrôles une partie du monde.
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">Montée : tables, victoires, rumeurs</span>
+                Elle accumule des victoires et une aura d’invincibilité.
+                Les gens projettent sur elle : génie, chance, sorcellerie, arrogance.
+                Céleste entretient le mythe, parce qu’un mythe intimide mieux qu’une personne.
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">Admission Hope’s Peak : consécration</span>
+                L’académie valide son excellence. C’est un nouveau terrain : plus prestigieux, plus surveillé.
+                Céleste y voit une opportunité d’élargir son influence — mais aussi un risque : être démasquée.
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-title">Pré-rentrée : stratégie d’entrée</span>
+                Avant d’arriver, elle prépare un plan social : posture, vocabulaire, limites.
+                Elle décide à l’avance qui sera “utile”, qui sera “tolérable”, qui sera “dangereux”.
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer-quote">
+        “Dans ce monde, tout est un pari. La seule erreur… c’est de parier sans contrôler la table.”
+        <span>- CELESTIA LUDENBERG</span>
+    </div>
+</div>
+</body>
+</html>
