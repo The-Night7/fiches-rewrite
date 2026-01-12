@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dossier Complet : Leon Kuwata (Pré-DR1)</title>
+    <title>Dossier Complet : Sonia Nevermind (Pré-DR2)</title>
     <style>
         /* --- STYLE GÉNÉRAL --- */
         :root{
-            --dr-orange:#e07a1f;        /* Orange “rebelle/pop” */
+            --dr-blue:#2f6fe6;      /* Bleu “royauté / drapeau” */
             --dr-black:#1a1a1a;
             --dr-paper:#fdfdfd;
             --dr-text:#333;
             --dr-muted:#666;
-            --dr-ink:#0f0f0f;
+            --dr-gold:#b08a2e;      /* Or “couronne” */
         }
 
         body{
@@ -43,7 +43,7 @@
             background-color:var(--dr-black);
             color:#fff;
             padding:25px;
-            border-bottom:6px solid var(--dr-orange);
+            border-bottom:6px solid var(--dr-blue);
             display:flex;
             justify-content:space-between;
             align-items:center;
@@ -59,7 +59,7 @@
         }
 
         .header-text .sub{
-            color:var(--dr-orange);
+            color:var(--dr-blue);
             font-weight:bold;
             letter-spacing:3px;
             margin-top:6px;
@@ -77,7 +77,7 @@
         }
 
         .logo-box{
-            border:2px solid var(--dr-orange);
+            border:2px solid var(--dr-blue);
             padding:5px 10px;
             font-weight:bold;
             font-size:0.8rem;
@@ -86,7 +86,7 @@
             min-width:150px;
         }
 
-        /* --- LAYOUT DU CONTENU --- */
+        /* --- LAYOUT --- */
         .content-grid{
             display:grid;
             grid-template-columns:300px 1fr;
@@ -108,7 +108,7 @@
             height:auto;
             border:4px solid var(--dr-black);
             background:#fff;
-            filter:contrast(1.1);
+            filter:contrast(1.05);
         }
 
         .data-block{
@@ -132,9 +132,9 @@
             border:2px solid var(--dr-black);
             padding:10px;
             font-size:0.82rem;
-            color:var(--dr-ink);
+            color:var(--dr-text);
         }
-        .tagline strong{ color:var(--dr-orange); }
+        .tagline strong{ color:var(--dr-blue); }
 
         .bullet-box{
             background:#fff;
@@ -161,7 +161,7 @@
         }
         .relations-box h4{
             margin:0 0 6px 0;
-            color:var(--dr-orange);
+            color:var(--dr-blue);
             border-bottom:1px solid rgba(255,255,255,0.7);
             padding-bottom:4px;
         }
@@ -169,18 +169,19 @@
         .relation-role{ color:#aaa; font-size:0.7rem; }
 
         .notice{
-            background:rgba(224, 122, 31, 0.10);
-            border-left:4px solid var(--dr-orange);
+            background:rgba(176, 138, 46, 0.10);
+            border-left:4px solid var(--dr-gold);
             padding:10px;
             font-size:0.82rem;
-            color:#4a2a10;
+            color:#3b2c11;
         }
+        .notice strong{ color:var(--dr-gold); }
 
         /* --- MAIN --- */
         .main-info{ padding:30px; }
 
         .title-banner{
-            background:linear-gradient(90deg, var(--dr-orange) 0%, transparent 90%);
+            background:linear-gradient(90deg, var(--dr-blue) 0%, transparent 90%);
             color:#fff;
             padding:8px 15px;
             font-family:Impact, sans-serif;
@@ -201,7 +202,7 @@
         }
 
         .highlight{
-            background-color:rgba(224, 122, 31, 0.18);
+            background-color:rgba(47, 111, 230, 0.18);
             padding:0 4px;
             font-weight:bold;
         }
@@ -227,7 +228,7 @@
 
         /* --- TIMELINE --- */
         .timeline-item{
-            border-left:3px solid var(--dr-orange);
+            border-left:3px solid var(--dr-blue);
             padding-left:15px;
             margin-bottom:18px;
             position:relative;
@@ -239,7 +240,7 @@
             top:2px;
             width:13px;
             height:13px;
-            background:var(--dr-orange);
+            background:var(--dr-blue);
             border-radius:50%;
         }
         .timeline-title{
@@ -259,11 +260,11 @@
             padding:30px;
             text-align:center;
             font-style:italic;
-            border-top:6px solid var(--dr-orange);
+            border-top:6px solid var(--dr-blue);
         }
         .footer-quote span{
             font-size:1.2rem;
-            color:var(--dr-orange);
+            color:var(--dr-blue);
             display:block;
             margin-top:10px;
             font-family:Impact, sans-serif;
@@ -280,32 +281,32 @@
             .logo-box{ transform:none; }
         }
         /* --- BACK BUTTON (AUTO-ADDED) --- */
-        .back-button-wrap{
-          display:flex;
-          justify-content:center;
-          margin: 18px 0 0;
-        }
+            .back-button-wrap{
+              display:flex;
+              justify-content:center;
+              margin: 18px 0 0;
+            }
 
-        .back-button{
-          display:inline-block;
-          text-decoration:none;
-          padding: 10px 14px;
-          border: 2px solid var(--dr-green);
-          color: var(--dr-green);
-          background: transparent;
-          font-weight: bold;
-          letter-spacing: 1px;
-          text-transform: uppercase;
-          font-size: 0.85rem;
-          transition: 0.15s ease-in-out;
-        }
+            .back-button{
+              display:inline-block;
+              text-decoration:none;
+              padding: 10px 14px;
+              border: 2px solid var(--dr-green);
+              color: var(--dr-green);
+              background: transparent;
+              font-weight: bold;
+              letter-spacing: 1px;
+              text-transform: uppercase;
+              font-size: 0.85rem;
+              transition: 0.15s ease-in-out;
+            }
 
-        .back-button:hover,
-        .back-button:focus{
-          background: var(--dr-green);
-          color: white;
-          outline: none;
-        }
+            .back-button:hover,
+            .back-button:focus{
+              background: var(--dr-green);
+              color: white;
+              outline: none;
+            }
     </style>
 </head>
 <body>
@@ -313,12 +314,12 @@
     <!-- HEADER -->
     <div class="header">
         <div class="header-text">
-            <h1>Leon Kuwata</h1>
-            <div class="sub">DOSSIER ÉTUDIANT // CLASSE 78e</div>
-            <div class="stamp">ARCHIVE : AVANT INCIDENT “TRIGGER HAPPY HAVOC”</div>
+            <h1>Sonia Nevermind</h1>
+            <div class="sub">DOSSIER ÉTUDIANT // CLASSE 77-B (PRÉ-INSCRIPTION)</div>
+            <div class="stamp">ARCHIVE : AVANT INCIDENT “JABBERWOCK ISLAND”</div>
         </div>
         <div class="logo-box">
-            HOPE'S PEAK<br>DATABASE<br>VER. 2.0
+            HOPE'S PEAK<br />DATABASE<br />VER. 2.0
         </div>
     </div>
 
@@ -326,155 +327,144 @@
         <!-- SIDEBAR -->
         <div class="sidebar">
             <img
-                    src="https://static.wikia.nocookie.net/danganronpa/images/9/9d/Leon_Kuwata_Trigger_Happy_Havoc_Fullbody_Sprite_05.png"
-                    alt="Leon Kuwata"
+                    src="https://static.wikia.nocookie.net/danganronpa/images/0/05/Sonia_Nevermind_Fullbody_Sprite_%282%29.png"
+                    alt="Sonia Nevermind"
                     class="mugshot"
             />
 
             <div class="tagline">
-                Angle presse : <strong>PRODIGE</strong> (baseball) + <strong>REFUS D’ÊTRE ENFERMÉ</strong> (identité)
+                Angle presse : <strong>PRINCESSE</strong> + <strong>CURIOSITÉ CULTURELLE</strong> + <strong>CALME DIPLOMATIQUE</strong>
             </div>
 
             <div class="data-block">
                 <div class="data-row"><span class="data-label">Statut</span> <span class="data-val">Candidat admis</span></div>
-                <div class="data-row"><span class="data-label">Talent (dossier)</span> <span class="data-val">Ultime Joueur de Baseball</span></div>
-                <div class="data-row"><span class="data-label">Anniversaire</span> <span class="data-val">3 Janvier</span></div>
-                <div class="data-row"><span class="data-label">Taille / Poids</span> <span class="data-val">175cm / 68kg</span></div>
-                <div class="data-row"><span class="data-label">Groupe sanguin</span> <span class="data-val">O</span></div>
+                <div class="data-row"><span class="data-label">Talent (dossier)</span> <span class="data-val">Ultime Princesse</span></div>
+                <div class="data-row"><span class="data-label">Anniversaire</span> <span class="data-val">7 Novembre</span></div>
+                <div class="data-row"><span class="data-label">Taille / Poids</span> <span class="data-val">174cm / 58kg</span></div>
+                <div class="data-row"><span class="data-label">Groupe sanguin</span> <span class="data-val">A</span></div>
             </div>
 
             <div class="data-block">
-                <div class="data-row"><span class="data-label">Aime</span> <span class="data-val">Musique, look, liberté</span></div>
-                <div class="data-row"><span class="data-label">N'aime pas</span> <span class="data-val">Entraînement imposé, contraintes</span></div>
+                <div class="data-row"><span class="data-label">Aime</span> <span class="data-val">Langues, traditions, sciences sociales</span></div>
+                <div class="data-row"><span class="data-label">N'aime pas</span> <span class="data-val">Cynisme, irrespect, solitude imposée</span></div>
             </div>
 
             <div class="bullet-box">
                 <h4>Lecture rapide</h4>
                 <ul>
-                    <li><strong>Charisme social</strong> : blagueur, “cool”, attire l’attention.</li>
-                    <li><strong>Fuite de l’étiquette</strong> : rejette qu’on le résume à “le sportif”.</li>
-                    <li><strong>Impulsivité</strong> : agit avant de verbaliser (réflexe défensif).</li>
-                    <li><strong>Talent réel</strong> : performance exceptionnelle malgré une motivation fluctuante.</li>
+                    <li><strong>Diplomate</strong> : désamorce, reformule, évite l’escalade.</li>
+                    <li><strong>Curieuse</strong> : s’intéresse à tout, parfois avec maladresse.</li>
+                    <li><strong>Éducation “royale”</strong> : protocole, maintien, endurance sociale.</li>
+                    <li><strong>Étrangeté charmante</strong> : goûts atypiques, fascination pour le macabre.</li>
                 </ul>
             </div>
 
             <div class="relations-box">
                 <h4>RELATIONS CLÉS (AVANT CAMPUS)</h4>
                 <div class="relation-item">
-                    <strong>Équipe / coach</strong><br />
-                    <span class="relation-role">Pression et attentes — “tu dois continuer”</span>
+                    <strong>Cour / conseillers</strong><br />
+                    <span class="relation-role">Protection politique — contrôle de l’image</span>
                 </div>
                 <div class="relation-item">
-                    <strong>Fans / médias locaux</strong><br />
-                    <span class="relation-role">Image de prodige — fascination, rumeurs</span>
+                    <strong>Garde rapprochée</strong><br />
+                    <span class="relation-role">Sécurité permanente — liberté négociée</span>
                 </div>
                 <div class="relation-item">
-                    <strong>Cercle d’amis</strong><br />
-                    <span class="relation-role">Complicité “de surface” — évite les confidences</span>
+                    <strong>Peuple / médias</strong><br />
+                    <span class="relation-role">Symbole national — affection et attentes</span>
                 </div>
-            </div>
-
-            <div class="notice">
-                <strong>Note rewrite :</strong> Leon fonctionne très bien si on montre que son côté “je-m’en-foutiste”
-                cache un conflit : <em>être choisi</em> vs <em>choisir</em>.
             </div>
         </div>
 
         <!-- MAIN -->
         <div class="main-info">
-            <div class="title-banner">Résumé — “Le prodige qui voulait autre chose”</div>
+            <div class="title-banner">Résumé — “La princesse et la liberté”</div>
             <p>
-                Leon Kuwata est connu pour une chose : il est <span class="highlight">extrêmement doué</span> au baseball.
-                Trop doué, trop tôt. Et c’est là que commence son problème : le monde a décidé pour lui.
-                Il devient “le futur pro”, “la fierté du lycée”, “l’Ultime Joueur de Baseball”… alors que lui
-                rêve d’une identité plus libre, plus stylée, plus choisie.
+                Sonia Nevermind est une contradiction vivante : figure publique irréprochable et adolescente curieuse,
+                protocole appris au millimètre et enthousiasme parfois maladroit. Avant Hope’s Peak, elle incarne
+                un symbole national — ce qui signifie : parler pour un pays, représenter une histoire, porter une image.
             </p>
             <p>
-                Avant Hope’s Peak, Leon oscille entre deux postures :
-                le garçon cool qui se moque de tout, et l’athlète qui sait exactement ce qu’il vaut.
-                Son attitude provocatrice n’est pas seulement de l’ego : c’est une façon de reprendre la main
-                sur une trajectoire qui lui échappe.
+                Sonia possède une gentillesse réelle, mais façonnée par la diplomatie : elle sait écouter sans juger,
+                remercier sans se compromettre, et éviter de mettre quelqu’un “au pied du mur”.
+                Dans un groupe, elle crée naturellement une atmosphère plus calme, parce qu’elle a été formée pour cela.
             </p>
 
             <div class="title-banner">Profil psychologique (pré-campus)</div>
             <p>
-                Leon est social : il parle facilement, teste les limites, cherche la réaction des autres.
-                Il préfère l’énergie de l’instant à la discipline longue. Il peut paraître superficiel,
-                mais ce masque sert à éviter une question qu’il redoute : “Et si je n’étais bon qu’à ça ?”
+                Sonia est extrêmement adaptée socialement : elle sait gérer des conversations difficiles,
+                maintenir un masque poli, et rester aimable sous pression. Ce contrôle n’est pas fake :
+                c’est une compétence. Son émotion passe souvent par des micro-gestes — un mot trop enthousiaste,
+                un regard qui s’allume, une curiosité impossible à contenir.
             </p>
             <p>
-                Chez lui, la frustration n’est pas le fait d’être médiocre — c’est le fait d’être bon
-                dans un domaine qu’il n’a pas choisi. D’où un paradoxe : il possède un talent d’élite,
-                mais s’auto-sabote parfois par rejet, par flemme affichée, ou par défi.
+                Son point fragile est la <span class="highlight">solitude institutionnelle</span>.
+                Une princesse est entourée, mais rarement comprise. Ses relations sont filtrées : conseillers,
+                sécurité, agenda. Elle peut idéaliser l’amitié “simple” et la normalité — d’où son attachement aux gens
+                qui la traitent comme une personne et non comme une fonction.
             </p>
             <div class="quote-box">
-                “Il a un niveau national. Mais il se comporte comme si réussir était une punition.”
-                <span class="src">— Extrait (rapport sportif / sélection)</span>
+                “Elle sourit comme une professionnelle… mais ses yeux cherchent une permission : ‘Est-ce que je peux être moi ?’”
+                <span class="src">— Note (observation / protocole)</span>
             </div>
 
-            <div class="title-banner">Le talent : Ultime Joueur de Baseball</div>
+            <div class="title-banner">Analyse du talent : Ultime Princesse</div>
             <p>
-                Le dossier insiste sur une capacité rare : Leon atteint des résultats incroyables avec une marge de progression énorme,
-                précisément parce qu’il ne s’investit pas “comme un fanatique”.
-                Il a une coordination, une explosivité et une lecture du jeu qui le placent au-dessus de la moyenne,
-                même lorsqu’il prétend s’en foutre.
+                Le talent de Sonia est un talent de gouvernance : langues, protocole, histoire, stratégie diplomatique,
+                représentation internationale. C’est une expertise à la fois politique et humaine : parler à tous, sans perdre personne.
             </p>
             <p class="muted">
-                On peut exploiter ce talent comme une métaphore : il est “fait pour gagner”,
-                mais il ne sait pas si cette victoire lui appartient.
+                En rewrite, son talent peut se traduire par une force en crise :
+                elle sait négocier, organiser, calmer un conflit, et gérer des situations où l’image compte.
+                Mais elle peut aussi être prisonnière de cette image.
             </p>
 
-            <div class="title-banner">Identité & fuite : musique, style, “autre vie”</div>
+            <div class="title-banner">Contraste : politesse, curiosité, goût du “bizarre”</div>
             <p>
-                Leon se projette ailleurs : dans la musique, l’image, la culture pop.
-                Il veut un domaine où l’on ne l’applaudit pas parce qu’il “doit” être bon,
-                mais parce qu’il a créé quelque chose. Son style (cheveux, vêtements, attitude) devient un manifeste :
-                <span class="highlight">je ne suis pas qu’un uniforme de sport</span>.
+                Sonia a des centres d’intérêt inattendus (selon ton ton : true crime, armes historiques, folklore, tragédies),
+                qui surprennent parce qu’ils entrent en collision avec son étiquette royale.
+                Ce contraste est utile : il montre qu’elle n’est pas “parfaite” — elle est vivante, et elle explore.
             </p>
             <p>
-                Cette recherche d’identité le rend attachant et instable : il peut être très motivé sur un coup de tête,
-                puis abandonner dès que la contrainte ressemble à celle du baseball (répétition, rigueur, coach).
+                Dans un rewrite, on peut faire de cette curiosité une force : elle pose des questions que les autres n’osent pas,
+                elle regarde le monde sans mépris, et elle apprend vite.
+                Ou une faiblesse : elle peut franchir une limite sociale sans s’en rendre compte, parce qu’elle est sincère.
             </p>
 
-            <div class="title-banner">Chronologie (avant Danganronpa 1)</div>
+            <div class="title-banner">Chronologie (avant Danganronpa 2)</div>
 
             <div class="timeline-item">
-                <span class="timeline-title">Détection du prodige</span>
-                Repéré tôt comme un talent brut. Victoires, statistiques, notoriété locale.
-                Les adultes (coach, encadrement) commencent à le traiter comme un “projet” plutôt que comme un ado.
+                <span class="timeline-title">Enfance : formation et vitrine</span>
+                Langues, maintien, histoire nationale, discours, sécurité. Sonia apprend à être une “image” avant d’être une élève.
+                Elle comprend tôt que l’erreur privée devient un scandale public.
             </div>
 
             <div class="timeline-item">
-                <span class="timeline-title">Accumulation de pression</span>
-                Son quotidien se remplit d’attentes : entraînements, compétitions, regard des autres.
-                Leon développe une posture de rejet : blagues, provocations, “j’en ai rien à faire”,
-                pour masquer l’étau.
+                <span class="timeline-title">Adolescence : désir de normalité</span>
+                Elle développe une fascination pour le quotidien des autres : amitiés libres, sorties spontanées, choix personnels.
+                Elle collectionne les références culturelles comme des fenêtres vers des vies possibles.
             </div>
 
             <div class="timeline-item">
-                <span class="timeline-title">Virage : le rêve “hors baseball”</span>
-                Il s’intéresse à un autre avenir (musique / lifestyle).
+                <span class="timeline-title">Admission Hope’s Peak : émancipation contrôlée</span>
+                Hope’s Peak la recrute pour son profil international.
+                Pour Sonia, c’est une chance : vivre autre chose qu’un palais. Pour la cour, c’est un risque calculé :
+                l’école doit être sûre, encadrée, “présentable”.
             </div>
 
             <div class="timeline-item">
-                <span class="timeline-title">Admission Hope’s Peak : consécration ambivalente</span>
-                L’académie le recrute pour son talent sportif.
-                Au lieu d’être une libération, c’est une confirmation : même l’école de l’élite ne voit que “baseball”.
-                Leon accepte, mais avec une idée en tête : <span class="highlight">prouver qu’il peut devenir autre chose</span>.
-            </div>
-
-            <div class="timeline-item">
-                <span class="timeline-title">Pré-rentrée : fissure et mise en scène</span>
-                Avant d’arriver, Leon pousse son image “cool” : look travaillé, discours détaché.
-                Plus le stress monte, plus il performe son indifférence.
+                <span class="timeline-title">Pré-rentrée : protocole vs amitié</span>
+                Avant d’entrer, Sonia se fixe des règles : rester digne, ne pas scandaliser, apprendre vite.
+                Et une envie secrète : se faire des amis qui ne la regardent pas comme une princesse.
+                En soi, c’est un super déclencheur : quand elle rencontre quelqu’un qui la traite “normalement”, elle s’accroche.
             </div>
         </div>
     </div>
 
     <!-- FOOTER -->
     <div class="footer-quote">
-        “Tout le monde dit que je suis né pour ça… mais moi, j’ai pas demandé à naître dans une case.”
-        <span>- LEON KUWATA</span>
+        “On m’a appris à représenter un pays… mais personne ne m’a appris à choisir pour moi.”
+        <span>- SONIA NEVERMIND</span>
     </div>
 </div>
 <div class="back-button-wrap">
